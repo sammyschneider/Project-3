@@ -47,8 +47,6 @@ foods.delete('/:id', (req, res) => {
     })
   })
 })
-/* ===========
-GET ROUTE
-============= */
+
 //DROP COLLECTION
 module.exports = foods;
