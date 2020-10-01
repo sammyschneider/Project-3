@@ -1,6 +1,7 @@
-const express = require(‘express’)
+const express = require('express')
 const foods = express.Router()
-const Food = require(‘../models/food.js’)
+const Food = require('../models/food.js')
+
 // =======================================
 //              ROUTES
 // =======================================
@@ -8,7 +9,7 @@ const Food = require(‘../models/food.js’)
 GET ROUTE
 ============= */
 //INDEX
-foods.get(‘/’, (req,res) => {
+foods.get('/', (req,res) => {
   Food.find({}, (err, foundFood) => {
     res.json(foundFood)
   })
@@ -17,7 +18,7 @@ foods.get(‘/’, (req,res) => {
 POST ROUTE
 ============= */
 //CREATE
-foods.post(‘/’, (req,res) => {
+foods.post('/', (req,res) => {
   Food.create(req.body, (err, createdFood) => {
     Food.find({}, (err, foundFood) => {
       res.json(foundFood)
@@ -28,7 +29,7 @@ foods.post(‘/’, (req,res) => {
 PUT ROUTE
 ============= */
 //EDIT
-foods.put(‘/:id’, (req,res) => {
+foods.put('/:id', (req,res) => {
   Food.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedNode) => {
     Food.find({}, (err,foundFood) => {
       res.json(foundFood)
@@ -39,7 +40,7 @@ foods.put(‘/:id’, (req,res) => {
 DELETE ROUTE
 ============= */
 //DELETE
-foods.delete(‘/:id’, (req, res) => {
+foods.delete('/:id', (req, res) => {
   Food.findByIdAndRemove(req.params.id, (err, deletedFood) => {
     Food.find({}, (err, foundFood) => {
       res.json(foundFood)
