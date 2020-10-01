@@ -13,7 +13,7 @@ app.use(express.static('public'))
 
 // ROUTES
 const foodController = require('./controllers/food_controller.js')
-app.use('/food', foodController)
+app.use('/foods', foodController)
 
 // DATABASE
 const MONGODB_URI = process.env.MONGODB_URI

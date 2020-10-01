@@ -1,5 +1,5 @@
 {
-  "name": "Project-3",
+  "name": "project-3",
   "version": "1.0.0",
   "description": "yoyo - Ricky",
   "main": "server.js",
@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.10.7"
   },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sammyschneider/Project-3.git"
