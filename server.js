@@ -12,10 +12,10 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // ROUTES
-const travelController = require('./controllers/food_controller.js')
-app.use('/restaurant', foodController)
+const foodController = require('./controllers/food_controller.js')
+app.use('/food', foodController)
 
-// DATABASE 
+// DATABASE
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
