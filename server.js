@@ -7,6 +7,15 @@ const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT
 
+// MIDDLEWARE
+app.use(express.json())
+app.use(express.static('public'))
+
+// ROUTES
+const travelController = require('./controllers/food_controller.js')
+app.use('/restaurant', foodController)
+
+// DATABASE 
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -26,13 +35,7 @@ mongoose.connection.on('connected', () =>
 )
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
-// MIDDLEWARE
-app.use(express.json())
-app.use(express.static('public'))
 
-// ROUTES
-const travelController = require('./controllers/food_controller.js')
-app.use('/restaurant', foodController)
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
