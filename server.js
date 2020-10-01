@@ -32,7 +32,7 @@ app.use(express.static('public'))
 
 // ROUTES
 const travelController = require('./controllers/food_controller.js')
-app.use('/restaurant', travelController)
+app.use('/restaurant', foodController)
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
