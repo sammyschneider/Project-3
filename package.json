@@ -1,7 +1,7 @@
 {
   "name": "Project-3",
   "version": "1.0.0",
-  "description": "",
+  "description": "yoyo - Ricky",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,5 +14,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammyschneider/Project-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sammyschneider/Project-3/issues"
+  },
+  "homepage": "https://github.com/sammyschneider/Project-3#readme"
 }
