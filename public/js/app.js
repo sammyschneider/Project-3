@@ -27,11 +27,7 @@ render = () => {
 
 
   return(
-<<<<<<< HEAD
-    <div className="container">
-=======
     <div>
->>>>>>> 5f1ddb991e773d070638b69446410aacf9a0d88c
 
     <div className="city">
     <div className="find-button">
@@ -41,17 +37,6 @@ render = () => {
     </div>
     {this.state.restaurant.map (food => {
       return(
-<<<<<<< HEAD
-        <div >
-
-        <div className="card">
-            <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
-          <h2>Cuisines: {food.restaurant.cuisines}</h2>
-          <h2>location: {food.restaurant.location.address}</h2>
-        <img src={food.restaurant.featured_image} width="680" height="420"/>
-        </div>
-
-=======
         <div className="card-container">
           <div className="food-card">
             <img src={food.restaurant.featured_image} alt="food-pic"/>
@@ -61,7 +46,6 @@ render = () => {
             <h3>location: {food.restaurant.location.address}</h3>
           </div>
           </div>
->>>>>>> 5f1ddb991e773d070638b69446410aacf9a0d88c
         </div>
       )})}
     </div>
@@ -69,9 +53,3 @@ render = () => {
   }
 }
 ReactDOM.render(<App></App>, document.querySelector('main'))
-
-
-//
-//
-// // we should give app a name, make look like a real website or app.-rj i fucked with the button to and some animation, def need to work on it some more ill see yall in da morning!
-// -RJ
