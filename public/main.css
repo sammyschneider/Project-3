@@ -27,32 +27,29 @@ color: black;
 .info {
   font-family: 'Rokkitt', serif;
 }
-<<<<<<< HEAD
-=======
 
 
 
 /* just started the css process its long way from even a quarter done. */
+img {
+  width: 500px;
+  height: 400px;
+  display: block;
+}
 .card-container {
   display: flex;
-  width: 80%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-.food-card {
-  width: 44%;
-  margin: 1em 0;
-  background: white;
-  box-shadow: 3px 3px #eee;
+.card {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 40%;
+  margin: 2%;
+  background: #12121212;
   box-sizing: border-box;
+  padding: 2%;
+  box-shadow: 2px 2px 4px gold;
 }
-img {
-  width: 100%;
-}
-.food-info {
-  /* display: flex; */
-  justify-content: space-between;
-  padding: 0.5em 1em;
-  font-size: 0.85em;
-}
->>>>>>> 5f1ddb991e773d070638b69446410aacf9a0d88c
