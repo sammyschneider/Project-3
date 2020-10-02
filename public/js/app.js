@@ -70,19 +70,9 @@ render = () => {
               <br/>
               <label htmlFor="rating">Rating: </label>
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
-              <input type="submit" value="Add A Review" className="update-btn" />
             </form>
           </div>
           </div>
-
-        <div >
-        <li>
-            <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
-          <h2>Cuisines: {food.restaurant.cuisines}</h2>
-          <h2>location: {food.restaurant.location.address}</h2>
-        <img src={food.restaurant.featured_image} width="680" height="420"alt="food"/>
-        </li>
-
         </div>
       )})}
     </div>
@@ -92,3 +82,9 @@ render = () => {
 
 
 ReactDOM.render(<App></App>, document.querySelector('main'))
+
+
+//
+//
+// // we should give app a name, make look like a real website or app.-rj i fucked with the button to and some animation, def need to work on it some more ill see yall in da morning!
+// -RJ
