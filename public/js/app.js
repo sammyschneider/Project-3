@@ -2,6 +2,8 @@
 
 class App extends React.Component {
   state = {
+    coment:'',
+    reating: '',
     foods: {},
     restaurant: []
   }
@@ -31,24 +33,39 @@ render = () => {
 
   return(
     <div>
-    <h1>Find best 10 restaurants wherever you are !! </h1>
+
+    <div className="city">
+    <div className="find-button">
     <button onClick={this.findFood}>Find Restaurants</button>
+    </div>
+
     <h3>City: {this.state.foods.city}</h3>
+    </div>
+    <ul>
     {this.state.restaurant.map (food => {
       return(
+
         <div >
-        <div >
+        <li>
             <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
           <h2>Cuisines: {food.restaurant.cuisines}</h2>
           <h2>location: {food.restaurant.location.address}</h2>
-        <img src={food.restaurant.featured_image} width="640" height="420"/>
-          </div>
+        <img src={food.restaurant.featured_image} width="680" height="420"alt="food"/>
+        </li>
         </div>
-      )})}
 
+
+      )})}
+</ul>
 
     </div>
   )
   }
 }
 ReactDOM.render(<App></App>, document.querySelector('main'))
+
+
+//
+//
+// // we should give app a name, make look like a real website or app.-rj i fucked with the button to and some animation, def need to work on it some more ill see yall in da morning!
+// -RJ

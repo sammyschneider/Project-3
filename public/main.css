@@ -1,0 +1,47 @@
+
+.header-tag{
+text-align: center;
+font-family: 'Rock Salt', cursive;
+text-decoration: none;
+color: black;
+}
+.city {
+  text-align: center;
+  font-family: 'Rokkitt', serif;
+}
+.find-button{
+  font-family: 'Rokkitt', serif;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: white;
+  transition: 0.3s all;
+  padding: 5px;
+  border-radius: 3px;
+  width: 120px;
+}
+.find-button:hover {
+  background-color: #15c1b9;
+}
+
+.info {
+  font-family: 'Rokkitt', serif;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+li {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 28%;
+  margin: 2%;
+  background: #12121212;
+  box-sizing: border-box;
+  padding: 2%;
+  box-shadow: 2px 2px 4px gold;
+}
+
+/* just started the css process its long way from even a quarter done. */
