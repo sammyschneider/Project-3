@@ -70,6 +70,7 @@ render = () => {
               <br/>
               <label htmlFor="rating">Rating: </label>
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
+              <input type="submit" value="Add A Review" className="update-btn" />
             </form>
           </div>
           </div>
