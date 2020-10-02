@@ -28,3 +28,31 @@ color: black;
 .info {
   font-family: 'Rokkitt', serif;
 }
+<<<<<<< HEAD
+=======
+
+
+/* just started the css process its long way from even a quarter done. */
+.card-container {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.food-card {
+  width: 44%;
+  margin: 1em 0;
+  background: white;
+  box-shadow: 3px 3px #eee;
+  box-sizing: border-box;
+}
+img {
+  width: 100%;
+}
+.food-info {
+  /* display: flex; */
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  font-size: 0.85em;
+}
+>>>>>>> 5f1ddb991e773d070638b69446410aacf9a0d88c
