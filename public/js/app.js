@@ -76,6 +76,10 @@ render = () => {
           </div>
           </div>
           <div className="add-review">
+          <form onSubmit="add">
+          <form onSubmit={this.handleSubmit}>
+          <h3 class="add-tag"> Add a Review!</h3>
+          <label htmlFor=""
         </div>
 
       )})}

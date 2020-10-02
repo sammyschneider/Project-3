@@ -31,7 +31,7 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // ROUTES
-const travelController = require('./controllers/food_controller.js')
+const foodController = require('./controllers/food_controller.js')
 app.use('/restaurant', foodController)
 
 app.listen(PORT, () => {
