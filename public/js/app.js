@@ -30,7 +30,7 @@ render = () => {
     <div className="container">
     <h1 onClick={this.findFood}>Hello guys</h1>
     <h3>Name: {this.state.foods.city}</h3>
-    <h2>Cuisines</h2>
+    <h2>Cuisines{this.state}</h2>
 
     </div>
 
