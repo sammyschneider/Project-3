@@ -30,7 +30,8 @@ class App extends React.Component {
          (response) => {
            this.setState({
              foods: response.data,
-             restaurant: response.data.best_rated_restaurant
+             restaurant: response.data.best_rated_restaurant,
+             id: response.data.best_rated_restaurant[0].id
            })
          }
      )}
@@ -61,7 +62,7 @@ render = () => {
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
-            <form onSubmit={this.createReview}>
+            <form onSubmit={this.createReview} id={this.state.id}>
               <label htmlFor="name">Name: </label>
               <input id='name' type='text' onChange={this.handleChange} />
               <br/>
@@ -70,12 +71,16 @@ render = () => {
               <br/>
               <label htmlFor="rating">Rating: </label>
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
+              <input type="submit" />
             </form>
           </div>
           </div>
+          <div className="add-review">
         </div>
+
       )})}
     </div>
+
   )
   }
 }
