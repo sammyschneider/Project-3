@@ -10,22 +10,21 @@ color: black;
   font-family: 'Rokkitt', serif;
 }
 .find-button{
-  font-family: 'Rokkitt', serif;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: white;
-  transition: 0.3s all;
-  padding: 5px;
-  border-radius: 3px;
-  width: 120px;
-}
+  background-color: #147842;
+    font-family: 'Acme', sans-serif;
+    width: 100px;
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 20px 0;
+    transition: 0.3s all;
+  }
 .find-button:hover {
-  background-color: #15c1b9;
+  background-color: #147842;
 }
 
 .info {
   font-family: 'Rokkitt', serif;
 }
-
-
-/* just started the css process its long way from even a quarter done. */

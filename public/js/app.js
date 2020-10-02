@@ -30,8 +30,8 @@ render = () => {
 
 
   return(
-    <div>
-    
+    <div className="container">
+
     <div className="city">
     <div className="find-button">
     <button onClick={this.findFood}>Find Restaurants</button>
@@ -42,14 +42,14 @@ render = () => {
     {this.state.restaurant.map (food => {
       return(
         <div >
-        <div >
-        <div className="info">
+
+        <div className="card">
             <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
           <h2>Cuisines: {food.restaurant.cuisines}</h2>
           <h2>location: {food.restaurant.location.address}</h2>
         <img src={food.restaurant.featured_image} width="680" height="420"/>
         </div>
-        </div>
+
         </div>
 
       )})}
