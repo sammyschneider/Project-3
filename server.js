@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const app = express()
 require('dotenv').config()
 const PORT = process.env.PORT
-
+console.log(process.env);
 // MIDDLEWARE
 app.use(express.json())
 app.use(express.static('public'))

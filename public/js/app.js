@@ -3,13 +3,13 @@
 class App extends React.Component {
   state = {
     foods: {},
-    best: []
+    restaurant: []
   }
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
         foods: response.data,
-        best: response.data.best_rated_restaurant
+        food: response.data.best_rated_restaurant
       })
     })
   }
@@ -20,19 +20,33 @@ class App extends React.Component {
          (response) => {
 
            this.setState({
-             array: response.data.best_rated_restaurant,
-             foods: response.data
+             foods: response.data,
+             restaurant: response.data.best_rated_restaurant
            })
-           console.log(this.state.array);
+
          }
-     )
- }
+     )}
 render = () => {
+
+
   return(
-    <div className="container">
-    <h1 onClick={this.findFood}>Hello guys</h1>
-    <h3>Name: {this.state.foods.city}</h3>
-    <h2>Cuisines</h2>
+    <div>
+    <h1>Find best 10 restaurants wherever you are !! </h1>
+    <button onClick={this.findFood}>Find Restaurants</button>
+    <h3>City: {this.state.foods.city}</h3>
+    {this.state.restaurant.map (food => {
+      return(
+        <div >
+        <div >
+            <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
+          <h2>Cuisines: {food.restaurant.cuisines}</h2>
+          <h2>location: {food.restaurant.location.address}</h2>
+        <img src={food.restaurant.featured_image} width="680" height="420"/>
+          </div>
+        </div>
+      )})}
+
+
     </div>
   )
   }
