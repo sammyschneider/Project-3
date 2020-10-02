@@ -2,12 +2,14 @@
 
 class App extends React.Component {
   state = {
-    foods: {}
+    foods: {},
+    best: []
   }
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
-        foods: response.data
+        foods: response.data,
+        best: response.data.best_rated_restaurant
       })
     })
   }
@@ -31,10 +33,8 @@ render = () => {
     <h1 onClick={this.findFood}>Hello guys</h1>
     <h3>Name: {this.state.foods.city}</h3>
     <h2>Cuisines</h2>
-
     </div>
-
   )
-}
+  }
 }
 ReactDOM.render(<App></App>, document.querySelector('main'))
