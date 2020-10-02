@@ -2,8 +2,8 @@
 
 class App extends React.Component {
   state = {
-    coment:'',
-    reating: '',
+   name:'',
+    reviews: '',
     foods: {},
     restaurant: []
   }
