@@ -31,9 +31,7 @@ render = () => {
 
   return(
     <div>
-    <div className="title">
-    <h1>The Food App </h1>
-    </div>
+    
     <div className="city">
     <div className="find-button">
     <button onClick={this.findFood}>Find Restaurants</button>
