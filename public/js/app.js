@@ -41,7 +41,7 @@ render = () => {
             <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
           <h2>Cuisines: {food.restaurant.cuisines}</h2>
           <h2>location: {food.restaurant.location.address}</h2>
-        <img src={food.restaurant.featured_image} width="680" height="420"/>
+        <img src={food.restaurant.featured_image} width="640" height="420"/>
           </div>
         </div>
       )})}
