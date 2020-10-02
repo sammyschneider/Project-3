@@ -73,9 +73,24 @@ render = () => {
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
               <input type="submit" value="Add A Review" className="update-btn" />
             </form>
+<<<<<<< HEAD
             </div>
             </div>
 
+=======
+          </div>
+          </div>
+
+        <div >
+        <li>
+            <h2>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h2>
+          <h2>Cuisines: {food.restaurant.cuisines}</h2>
+          <h2>location: {food.restaurant.location.address}</h2>
+        <img src={food.restaurant.featured_image} width="680" height="420"alt="food"/>
+        </li>
+
+        </div>
+>>>>>>> cb82d68479c6360e73f0a4c1831f6138322d0cfb
       )})}
       </div>
     </div>

@@ -27,8 +27,38 @@ color: black;
 .info {
   font-family: 'Rokkitt', serif;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+=======
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+li {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 28%;
+  margin: 2%;
+  background: #12121212;
+  box-sizing: border-box;
+  padding: 2%;
+  box-shadow: 2px 2px 4px gold;
+}
+>>>>>>> fcd9600389b6ad86bcfeec3326c214a1bed5480f
+=======
+=======
+>>>>>>> cb82d68479c6360e73f0a4c1831f6138322d0cfb
 
 
+>>>>>>> 706d40f5169bc77725c6c45d62cb3cbfb0d09a4b
 
 /* just started the css process its long way from even a quarter done. */
 img {
