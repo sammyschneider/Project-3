@@ -48,10 +48,5 @@ foods.delete('/:id', (req, res) => {
   })
 })
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a6176bc739719f235eae2c3babf8ca96647f762c
 //DROP COLLECTION
 module.exports = foods;
