@@ -32,8 +32,8 @@ color: black;
 
 /* just started the css process its long way from even a quarter done. */
 img {
-  width: 500px;
-  height: 400px;
+  width: 90%;
+  height: 50%;
   display: block;
 }
 .card-container {
@@ -48,8 +48,14 @@ img {
   align-items: center;
   flex-basis: 40%;
   margin: 2%;
-  background: #12121212;
+  /* background: #12121212; */
   box-sizing: border-box;
   padding: 2%;
-  box-shadow: 2px 2px 4px gold;
+  box-shadow: 2px 2px 4px;
+}
+.food-info {
+  /* display: flex; */
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  font-size: 0.85em;
 }

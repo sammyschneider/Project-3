@@ -24,7 +24,7 @@ class App extends React.Component {
     })
 }
   //LOADS ZOMATO API DIRECTLY ON PAGE
-  findFood = (event) => {
+  newYork = (event) => {
      event.preventDefault()
      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=280&entity_type=city').then(
          (response) => {
@@ -34,6 +34,7 @@ class App extends React.Component {
            })
          }
      )}
+
   // LOADS CRUD (REVIEW SCHEMA)
   createReview = (event) => {
     event.preventDefault()
@@ -48,7 +49,7 @@ render = () => {
     <div>
     <div className="city">
     <div className="find-button">
-    <button onClick={this.findFood}>Find Restaurants</button>
+    <button onClick={this.newYork}>Find Restaurants at New York</button>
     <h3>City: {this.state.foods.city}</h3>
     </div>
     </div>
@@ -57,6 +58,7 @@ render = () => {
       return(
         <div className="card">
             <img src={food.restaurant.featured_image} alt="food-pic"/>
+            <div classNAme="food-info">
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
@@ -71,6 +73,7 @@ render = () => {
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
               <input type="submit" value="Add A Review" className="update-btn" />
             </form>
+            </div>
             </div>
 
       )})}
