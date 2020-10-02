@@ -32,8 +32,13 @@ color: black;
 
 /* just started the css process its long way from even a quarter done. */
 img {
+<<<<<<< HEAD
   width: 500px;
   height: 400px;
+=======
+  width: 90%;
+  height: 50%;
+>>>>>>> 3a510d58ae56beb06b7a4c0c532d4e42bd04ea6c
   display: block;
 }
 .card-container {
@@ -48,8 +53,21 @@ img {
   align-items: center;
   flex-basis: 40%;
   margin: 2%;
+<<<<<<< HEAD
   background: #12121212;
   box-sizing: border-box;
   padding: 2%;
   box-shadow: 2px 2px 4px gold;
+=======
+  /* background: #12121212; */
+  box-sizing: border-box;
+  padding: 2%;
+  box-shadow: 2px 2px 4px;
+}
+.food-info {
+  /* display: flex; */
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  font-size: 0.85em;
+>>>>>>> 3a510d58ae56beb06b7a4c0c532d4e42bd04ea6c
 }
