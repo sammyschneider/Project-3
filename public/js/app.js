@@ -18,10 +18,10 @@ class App extends React.Component {
          (response) => {
 
            this.setState({
-
-             foods: response.data[]
+             foods: response.data,
+             best: response.data.best_rated_restaurant
            })
-           console.log(this.state.foods.best_rated_restaurant[0].restaurant.cuisines);
+           console.log(this.state.best);
          }
      )
  }
