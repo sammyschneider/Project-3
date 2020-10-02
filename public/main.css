@@ -1,11 +1,14 @@
 
 .title {
 text-align: center;
+font-family: 'Rock Salt', cursive;
 }
 .city {
   text-align: center;
+  font-family: 'Rokkitt', serif;
 }
 .find-button{
+  font-family: 'Rokkitt', serif;
   text-align: center;
   text-transform: uppercase;
   background-color: white;
@@ -16,4 +19,8 @@ text-align: center;
 }
 .find-button:hover {
   background-color: #15c1b9;
+}
+
+.info {
+  font-family: 'Rokkitt', serif;
 }
