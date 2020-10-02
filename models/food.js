@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 
 const foodSchema = new mongoose.Schema ({
-  comment: String,
-  rating: Number
+  name: String,
+  review: String,
+  rating: {type: Number , max:5, min:0}
 })
 
 
-const Food = mongoose.model('Food', foodSchema)
+const Food = mongoose.model('Review', foodSchema)
 
 module.exports = Food;

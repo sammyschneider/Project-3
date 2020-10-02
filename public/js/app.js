@@ -59,8 +59,7 @@ render = () => {
 </ul>
 
     </div>
-  )
-  }
+  )}
 }
 ReactDOM.render(<App></App>, document.querySelector('main'))
 
