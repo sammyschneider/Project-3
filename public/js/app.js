@@ -1,13 +1,16 @@
 class App extends React.Component {
-  //Updating state to contain review
+  // Updated state to contain a review object
   state = {
     foods: {},
     restaurant: [],
-    name: '',
-    review: '',
-    rating: null,
-    reviews:{},
+    reviews:[],
+    review: {
+      name: '',
+      review_content: '',
+      rating: null,
+    },
     show: false,
+
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
@@ -67,7 +70,7 @@ render = () => {
             {
               this.state.reviews.forEach((review, i) => {
 
-              });
+              })
 
             }
             <form onSubmit={this.createReview}>
