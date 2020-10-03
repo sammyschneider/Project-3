@@ -1,12 +1,17 @@
 class App extends React.Component {
+  // Updated state to contain a review object
   state = {
     foods: {},
     restaurant: [],
-    name: '',
-    review: '',
-    rating: null,
-    reviews:{},
+    reviews:[],
+    review: {
+      name: '',
+      review_content: '',
+      rating: null,
+      restaurant_id: ''
+    },
     show: false,
+
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
@@ -19,10 +24,16 @@ class App extends React.Component {
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
+    const review = this.state.review;
+    const restaurantInput = document.getElementById('restaurant_id');
+    review.restaurant_id = restaurantInput.value;
+    review[event.target.id] = event.target.value
     this.setState({
-        [event.target.id]: event.target.value
+      review: review
     })
 }
+
+
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findFood = (event) => {
      event.preventDefault()
@@ -37,7 +48,7 @@ class App extends React.Component {
   // LOADS CRUD (REVIEW SCHEMA)
   createReview = (event) => {
     event.preventDefault()
-    axios.post('/foods', this.state).then(response => {
+    axios.post('/foods', this.state.review).then(response => {
       this.setState({
         reviews: response.data
       })
@@ -61,12 +72,20 @@ render = () => {
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
+            <h3>Reviews: </h3>
+            {
+              this.state.reviews.forEach((review, i) => {
+
+              })
+
+            }
             <form onSubmit={this.createReview}>
+              <input id='restaurant_id' type='hidden' value={food.restaurant.id} />
               <label htmlFor="name">Name: </label>
               <input id='name' type='text' onChange={this.handleChange} />
               <br/>
               <label htmlFor="review">Review: </label>
-              <input id='review' type='text' onChange={this.handleChange} />
+              <input id='review_content' type='text' onChange={this.handleChange} />
               <br/>
               <label htmlFor="rating">Rating: </label>
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
