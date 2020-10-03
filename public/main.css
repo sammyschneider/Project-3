@@ -38,7 +38,7 @@ color: black;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.card {
+.food-card {
   display: flex;
   flex-flow: column;
   justify-content: space-around;

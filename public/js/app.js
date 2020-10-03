@@ -8,7 +8,13 @@ class App extends React.Component {
     cuisines: '',
     ratings: null,
     favorite:[],
-    show: false
+    reviews:[],
+    review: {
+      name: '',
+      review_content: '',
+      rating: null,
+      restaurant_id: ''
+    },
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
@@ -23,7 +29,7 @@ class App extends React.Component {
 
   // delete
 
-deleteReview = (event) => {
+deleteRestaurant = (event) => {
   axios.delete('/foods/' + event.target.value)
   .then(response => this.setState(
     {favorite: response.data})
@@ -32,7 +38,7 @@ deleteReview = (event) => {
 
 
 
-updateReview = (event) => {
+updateRestaurant = (event) => {
       event.preventDefault()
       const id = event.target.id
       axios
@@ -48,7 +54,24 @@ updateReview = (event) => {
         })
       })
     }
+    // LOADS CRUD (REVIEW SCHEMA)
+   createReview = (event) => {
+     event.preventDefault()
+     axios.post('/foods', this.state.review).then(response => {
+       this.setState({
+         reviews: response.data
+       })
+     })
+   }
 
+   // Deletes Review
+deleteReview = (event) => {
+  axios.delete('/foods/' + event.target.id).then(response => {
+    this.setState({
+      reviews: response.data
+    })
+  })
+}
   changeId = (event) => {
     this.setState({
       id: event.target.value
@@ -56,9 +79,20 @@ updateReview = (event) => {
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
+
     this.setState({
         [event.target.id]: event.target.value
     })
+}
+//HOW TO SET THE CHANGES
+reviewChange = (event) => {
+  const review = this.state.review;
+  const restaurantInput = event.target.parentElement.querySelector('#restaurant_id') // Have to find specific restaurant input element
+  review.restaurant_id = restaurantInput.value;
+  review[event.target.id] = event.target.value
+  this.setState({
+    review: review
+  })
 }
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findById = (event) => {
@@ -136,7 +170,7 @@ render = () => {
          <div className="edit">
          <details>
           <summary> Edit Restaurant</summary>
-          <form id={fav._id} onSubmit={this.updateReview} >
+          <form id={fav._id} onSubmit={this.updateRestaurant} >
           <label htmlFor="img">Image: </label>
           <input onChange={this.handleChange} type="text" id="img" />
           <br />
@@ -156,7 +190,7 @@ render = () => {
           <input type="submit" value="Edit Your Restaurant" />
           </form>
           <button value ={fav._id}
-          onClick={this.deleteReview}
+          onClick={this.deleteRestaurant}
           >DELETE
           </button>
           </details>
@@ -169,16 +203,16 @@ render = () => {
       <summary>Add your favorite restaurant </summary>
      <div className="addForm">
      <form onSubmit={this.createFav}>
-          <label htmlFor="img">Image</label>
+          <label htmlFor="img">Image: </label>
           <input onChange={this.handleChange} type="text" id="img" />
           <br />
-          <label htmlFor="restaurantName">Restaurant name</label>
+          <label htmlFor="restaurantName">Restaurant name: </label>
           <input onChange={this.handleChange} type="text" id="restaurantName" />
           <br />
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">Address: </label>
           <input onChange={this.handleChange} type="text" id="address" />
           <br />
-          <label htmlFor="cuisines">Cuisines</label>
+          <label htmlFor="cuisines">Cuisines: </label>
           <input onChange={this.handleChange} type="text" id="cuisines" />
           <br />
           <label htmlFor="ratings"></label>
@@ -204,17 +238,43 @@ render = () => {
       </form>
         </div>
         <div className="card-container">
-
         {this.state.restaurant.map (food => {
           return(
-        <div className="card">
-
+        <div className="food-card">
             <img className="apiImg"src={food.restaurant.thumb} alt="food-pic"/>
             <div className="food-info">
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
             <h3>Ratings: {food.restaurant.user_rating.aggregate_rating}</h3>
+            <h3>Reviews: </h3>
+              {
+                this.state.reviews.filter((review) => {
+                  return food.restaurant.id == review.restaurant_id
+                })
+                .map((review, i) => {
+                  return(
+                    <div key={i}>
+                      <h2>Name:{review.name}</h2>
+                      <p>Rating:{review.rating}</p>
+                      <p>{review.review_content}</p>
+                      <button onClick={this.deleteReview} id={review._id}>delete</button>
+                    </div>
+                  )
+                })
+              }
+              <form onSubmit={this.createReview}>
+                <input id='restaurant_id' type='hidden' value={food.restaurant.id} />
+                <label htmlFor="name">Name: </label>
+                <input id='name' type='text' onChange={this.reviewChange} />
+                <br/>
+                <label htmlFor="review">Review: </label>
+                <input id='review_content' type='text' onChange={this.reviewChange} />
+                <br/>
+                <label htmlFor="rating">Rating: </label>
+                <input id='rating' type='number' min='0' max='5' onChange={this.reviewChange} />
+                <input type="submit" value="Add A Review" className="update-btn" />
+              </form>
             </div>
             </div>
 )})}
