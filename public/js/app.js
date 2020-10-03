@@ -20,9 +20,8 @@ class App extends React.Component {
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
-        // foods: response.data,
-        // food: response.data.best_rated_restaurant
-        favorite: response.data
+        favorite: response.data,
+        reviews: response.data
       })
     })
   }
