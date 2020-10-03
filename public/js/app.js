@@ -8,6 +8,7 @@ class App extends React.Component {
       name: '',
       review_content: '',
       rating: null,
+      restaurant_id: ''
     },
     show: false,
 
@@ -23,11 +24,16 @@ class App extends React.Component {
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
-    const review =
+    const review = this.state.review;
+    const restaurantInput = document.getElementById('restaurant_id');
+    review.restaurant_id = restaurantInput.value;
+    review[event.target.id] = event.target.value
     this.setState({
-        [event.target.id]: event.target.value
+      review: review
     })
 }
+
+
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findFood = (event) => {
      event.preventDefault()
@@ -42,7 +48,7 @@ class App extends React.Component {
   // LOADS CRUD (REVIEW SCHEMA)
   createReview = (event) => {
     event.preventDefault()
-    axios.post('/foods', this.state).then(response => {
+    axios.post('/foods', this.state.review).then(response => {
       this.setState({
         reviews: response.data
       })
@@ -74,11 +80,12 @@ render = () => {
 
             }
             <form onSubmit={this.createReview}>
+              <input id='restaurant_id' type='hidden' value={food.restaurant.id} />
               <label htmlFor="name">Name: </label>
               <input id='name' type='text' onChange={this.handleChange} />
               <br/>
               <label htmlFor="review">Review: </label>
-              <input id='review' type='text' onChange={this.handleChange} />
+              <input id='review_content' type='text' onChange={this.handleChange} />
               <br/>
               <label htmlFor="rating">Rating: </label>
               <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
