@@ -9,27 +9,17 @@ color: black;
   font-family: 'Rokkitt', serif;
 }
 .find-button{
-  background-color: #147842;
-    font-family: 'Acme', sans-serif;
-    width: 100px;
-    text-transform: uppercase;
-    background-color: white;
-    border: 1px solid #e6e6e6;
+    width: 15%;
     border-radius: 3px;
     padding: 5px;
-    margin: 20px 0;
-    transition: 0.3s all;
   }
 .find-button:hover {
-  background-color: #147842;
+  background-color: #6500d4cf;
 }
 
 .info {
   font-family: 'Rokkitt', serif;
 }
-<<<<<<< HEAD
-=======
-
 
 
 /* just started the css process its long way from even a quarter done. */
@@ -37,21 +27,60 @@ color: black;
   display: flex;
   width: 80%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin: auto;
 }
 .food-card {
   width: 44%;
-  margin: 1em 0;
+  margin: 2em 0;
   background: white;
-  box-shadow: 3px 3px #eee;
+  box-shadow: 4px 4px #eee;
   box-sizing: border-box;
 }
 img {
   width: 100%;
+  display: block;
 }
 .food-info {
   /* display: flex; */
   justify-content: space-between;
   padding: 0.5em 1em;
   font-size: 0.85em;
+}
+.find-button {
+  margin: auto;
+}
+.weight{
+  font-weight: 200;
+}
+.rating {
+  width: 100%;
+  margin: 2%;
+}
+.review-box {
+  outline: 1px solid black;
+  padding: 5%;
+  margin: 2%;
+}
+.add-review {
+  float: right;
+}
+.anchors {
+  text-decoration: none;
+  color: black;
+}
+.review-padding {
+  padding: 3%;
+}
+.anchors:hover {
+  text-decoration: none;
+  color: #6500d4cf;
+}
+textarea {
+  max-width: 100%;
+  max-height: 100px;
+  min-height: 10px;
+}
+.edit-remove {
+  display: flex;
 }
