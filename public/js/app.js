@@ -8,7 +8,7 @@ class App extends React.Component {
     cuisines: '',
     ratings: null,
     favorite:[],
-    show: false,
+    show: false
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
@@ -66,9 +66,9 @@ newYork= (event) => {
             })
           }
       )}
-  lasVegas= (event) => {
+  dallasTexas= (event) => {
     event.preventDefault()
-        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
+        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=289&entity_type=city').then(
             (response) => {
               this.setState({
                 foods: response.data,
@@ -135,7 +135,8 @@ render = () => {
     <div className="city">
     <div className="find-button">
     <button onClick={this.newYork}>Find Restaurants at New York</button>
-    <button onClick={this.lasVegas}>Find Restaurants at Los Angeles</button>
+    <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
+    <button onClick={this.dallasTexas}>Find Restaurants at Dallas</button>
     </div>
     </div>
     <div>
