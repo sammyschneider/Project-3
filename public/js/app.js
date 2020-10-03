@@ -11,6 +11,7 @@ class App extends React.Component {
       restaurant_id: ''
     },
     show: false,
+    showReview: false
 
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
@@ -48,7 +49,7 @@ class App extends React.Component {
   createReview = (event) => {
     event.preventDefault()
     event.target.reset()
-    axios.post('/foods', this.state).then(response => {
+    axios.post('/foods', this.state.review).then(response => {
       this.setState({
         reviews: response.data
       })
@@ -66,10 +67,11 @@ deleteReview = (event) => {
 //EDIT REVIEW
 updateReview = (event) => {
   event.preventDefault()
+  event.target.reset()
   axios.put('/foods/'+ event.target.id, this.state.review).then(response => {
     this.setState({
       reviews: response.data
-    })
+    }), console.log(response.data)
   })
 }
 //TOGGLE FORM
@@ -78,12 +80,18 @@ updateReview = (event) => {
         show: !this.state.show
       })
   }
+  //TOGGLE REVIEW
+    toggleReview = (event) => {
+        this.setState({
+          showReview: !this.state.showReview
+        })
+    }
 render = () => {
   return(
     <div>
     <div className="city">
     <div className="find-button">
-    <button onClick={this.findFood}>Find Restaurants</button>
+    <button className='btn btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
     </div>
     </div>
     <div className="card-container">
@@ -119,19 +127,17 @@ render = () => {
                       <p>Rating: {review.rating}</p>
                       <p>{review.review_content}</p>
                       <button className='btn-sm btn-outline-danger' onClick={this.deleteReview} id={review._id}>Remove</button>
-                      <details>
                         <summary>
-                          <i className="fas fa-pencil-alt"></i>
+                          <i onClick={this.toggleReview} className="fas fa-pencil-alt"></i>
                         </summary>
-                        <form onSubmit={this.updateReview} id={review._id}>
+                        {this.state.showReview ? <form onSubmit={this.updateReview} id={review._id}>
                           <input type='text' id='name' className='rating' onChange={this.handleChange}/>
                           <br/>
                           <textarea className='rating' id='review_content' onChange={this.hangleChange}/>
                           <br/>
                           <input type='number' className='rating' id='rating' min='0' max='5'onChange={this.handleChange}/>
                           <input className="btn-sm btn-outline-success" type="submit" value="Update" />
-                          </form>
-                      </details>
+                          </form> : null}
                      </div>
                   )
                 })
@@ -140,6 +146,7 @@ render = () => {
           </div>
       )})}
       </div>
+      <div className='footer-bottom'><footer className='footer'><h4>Created by RJ, Sammy, Brandon, Ricky</h4></footer></div>
     </div>
   )
   }

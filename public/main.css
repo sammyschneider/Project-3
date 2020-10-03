@@ -13,9 +13,9 @@ color: black;
     border-radius: 3px;
     padding: 5px;
   }
-.find-button:hover {
+/* .find-button:hover {
   background-color: #6500d4cf;
-}
+} */
 
 .info {
   font-family: 'Rokkitt', serif;
@@ -34,12 +34,13 @@ color: black;
   width: 44%;
   margin: 2em 0;
   background: white;
-  box-shadow: 4px 4px #eee;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
   box-sizing: border-box;
 }
 img {
   width: 100%;
   display: block;
+  padding: 3%;
 }
 .food-info {
   /* display: flex; */
@@ -61,6 +62,7 @@ img {
   outline: 1px solid black;
   padding: 5%;
   margin: 2%;
+  background-color: cornsilk;
 }
 .add-review {
   float: right;
@@ -81,6 +83,31 @@ textarea {
   max-height: 100px;
   min-height: 10px;
 }
-.edit-remove {
+/* .edit-remove {
   display: flex;
+} */
+body {
+  background-image: url('https://cdn.pixabay.com/photo/2017/08/07/22/57/coffee-2608864__340.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.RJ {
+  color: black;
+  padding: 1%;
+  background: cornsilk;
+}
+.find-btn{
+  font-size: larger;
+}
+.footer-bottom {
+  position: sticky;
+  bottom: 0;
+  background: cornsilk;
+  padding: 1%;
+}
+.footer {
+  color: black;
+  text-align: center;
+  font-family: 'Rock Salt', cursive;
 }
