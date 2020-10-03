@@ -1,7 +1,7 @@
 const express = require('express')
 const foods = express.Router()
 const Food = require('../models/food.js')
-
+const foodSeed = require('../models/seed.js')
 // =======================================
 //              ROUTES
 // =======================================
@@ -47,6 +47,11 @@ foods.delete('/:id', (req, res) => {
     })
   })
 })
-
+//Seed
+foods.get('/seed', (req, res) => {
+  Food.insertMany(foodSeed, (err, manyFood) => {
+    res.redirect('/')
+  })
+})
 //DROP COLLECTION
 module.exports = foods;
