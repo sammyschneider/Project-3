@@ -49,7 +49,7 @@ foods.delete('/:id', (req, res) => {
 })
 //Seed
 foods.get('/seed', (req, res) => {
-  Food.insertMany(foodSeed, (err, manyBirds) => {
+  Food.insertMany(foodSeed, (err, manyFood) => {
     res.redirect('/')
   })
 })

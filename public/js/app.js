@@ -66,6 +66,17 @@ newYork= (event) => {
             })
           }
       )}
+  lasVegas= (event) => {
+    event.preventDefault()
+        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
+            (response) => {
+              this.setState({
+                foods: response.data,
+                restaurant: response.data.best_rated_restaurant
+                })
+              }
+          )}
+
   // LOADS CRUD (REVIEW SCHEMA)
   createFav = (event) => {
     event.preventDefault()
@@ -100,9 +111,7 @@ render = () => {
       <details>
       <summary>Add your favorite restaurant </summary>
      <div className="addForm">
-
-
-       <form onSubmit={this.createFav}>
+     <form onSubmit={this.createFav}>
           <label htmlFor="img">Image</label>
           <input onChange={this.handleChange} type="text" id="img" />
           <br />
