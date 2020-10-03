@@ -17,15 +17,14 @@ class App extends React.Component {
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
-        foods: response.data,
-        food: response.data.best_rated_restaurant
+        reviews: response.data
       })
     })
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
     const review = this.state.review;
-    const restaurantInput = document.getElementById('restaurant_id');
+    const restaurantInput = event.target.parentElement.querySelector('#restaurant_id') // Have to find specific restaurant input element
     review.restaurant_id = restaurantInput.value;
     review[event.target.id] = event.target.value
     this.setState({
@@ -37,7 +36,7 @@ class App extends React.Component {
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findFood = (event) => {
      event.preventDefault()
-     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=280&entity_type=city').then(
+     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
          (response) => {
            this.setState({
              foods: response.data,
@@ -54,6 +53,14 @@ class App extends React.Component {
       })
     })
   }
+// Deletes Review
+deleteReview = (event) => {
+  axios.delete('/foods/' + event.target.id).then(response => {
+    this.setState({
+      reviews: response.data
+    })
+  })
+}
 render = () => {
   return(
     <div>
@@ -74,10 +81,19 @@ render = () => {
             <h3>location: {food.restaurant.location.address}</h3>
             <h3>Reviews: </h3>
             {
-              this.state.reviews.forEach((review, i) => {
-
+              this.state.reviews.filter((review) => {
+                return food.restaurant.id == review.restaurant_id
               })
-
+              .map((review, i) => {
+                return(
+                  <div key={i}>
+                    <h3>Name:{review.name}</h3>
+                    <p>Rating:{review.rating}</p>
+                    <p>{review.review_content}</p>
+                    <button onClick={this.deleteReview} id={review._id}>delete</button>
+                  </div>
+                )
+              })
             }
             <form onSubmit={this.createReview}>
               <input id='restaurant_id' type='hidden' value={food.restaurant.id} />
