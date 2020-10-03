@@ -4,7 +4,7 @@ class App extends React.Component {
     restaurant: [],
     img: '',
     name: '',
-    city: '',
+    address: '',
     cuisines: '',
     rating: null,
     favorite:{},
@@ -32,7 +32,7 @@ class App extends React.Component {
     })
 }
   //LOADS ZOMATO API DIRECTLY ON PAGE
-  newYork= (event) => {
+  newYork = (event) => {
      event.preventDefault()
      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.id +'&entity_type=city').then(
          (response) => {
@@ -74,7 +74,7 @@ class App extends React.Component {
         favorite: response.data,
         img: '',
         name: '',
-        city: '',
+        address: '',
         cuisines: '',
         rating: null,
       })
@@ -82,7 +82,8 @@ class App extends React.Component {
   }
 render = () => {
   return(
-    <div>
+    <div className="container">
+    <h2>Favorite Restaurants</h2>
     <div className="city">
     <h3>City: {this.state.foods.city}</h3>
     <div className="find-button">
