@@ -57,12 +57,9 @@ color: black;
 }
 ul {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
 li {
   display: flex;
-  flex-flow: column;
   justify-content: space-between;
   align-items: center;
   flex-basis: 28%;

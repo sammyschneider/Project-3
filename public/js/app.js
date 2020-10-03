@@ -8,11 +8,7 @@ class App extends React.Component {
     cuisines: '',
     ratings: null,
     favorite:[],
-<<<<<<< HEAD
     show: false
-=======
-    show: false,
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
@@ -24,10 +20,8 @@ class App extends React.Component {
       })
     })
   }
-<<<<<<< HEAD
-=======
 
-// delete
+  // delete
 
 deleteReview = (event) => {
   axios.delete('/foods/' + event.target.value)
@@ -55,9 +49,6 @@ updateReview = (event) => {
       })
     }
 
-
-
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
   changeId = (event) => {
     this.setState({
       id: event.target.value
@@ -104,15 +95,9 @@ newYork= (event) => {
             })
           }
       )}
-<<<<<<< HEAD
   dallasTexas= (event) => {
     event.preventDefault()
         axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=289&entity_type=city').then(
-=======
-  lasVegas= (event) => {
-    event.preventDefault()
-        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
             (response) => {
               this.setState({
                 foods: response.data,
@@ -148,14 +133,34 @@ render = () => {
          <h4>Address: {fav.address}</h4>
          <h4>Cuisines: {fav.cuisines}</h4>
          <h4>Ratings: {fav.ratings}</h4>
-<<<<<<< HEAD
-=======
-         <button
-          value ={fav._id}
-         onClick={this.deleteReview}
-         > DELETE
-         </button>
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
+         <div className="edit">
+         <details>
+          <summary> Edit Restaurant</summary>
+          <form id={fav._id} onSubmit={this.updateReview} >
+          <label htmlFor="img">Image: </label>
+          <input onChange={this.handleChange} type="text" id="img" />
+          <br />
+          <label htmlFor="restaurantName">Restaurant name: </label>
+          <input onChange={this.handleChange} type="text" id="restaurantName" />
+          <br />
+          <label htmlFor="address">Address: </label>
+          <input onChange={this.handleChange} type="text" id="address" />
+          <br />
+          <label htmlFor="cuisines">Cuisines: </label>
+          <input onChange={this.handleChange} type="text" id="cuisines" />
+          <br />
+          <label htmlFor="ratings">Ratings: </label>
+          <input onChange={this.handleChange} type="number" min="0" max="5" id="ratings" />
+          <br />
+
+          <input type="submit" value="Edit Your Restaurant" />
+          </form>
+          <button value ={fav._id}
+          onClick={this.deleteReview}
+          >DELETE 
+          </button>
+          </details>
+          </div>
          </div>
        )
      })}
@@ -184,38 +189,7 @@ render = () => {
         </form>
      </div>
      </details>
-<<<<<<< HEAD
-    <div className="city">
-    <div className="find-button">
-    <button onClick={this.newYork}>Find Restaurants at New York</button>
-    <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
-    <button onClick={this.dallasTexas}>Find Restaurants at Dallas</button>
-=======
-     <div className="edit">
-     <details>
-<summary> Edit Review</summary>
-<form onSubmit={this.updateReview} >
-<label htmlFor="img">Image</label>
-<input onChange={this.handleChange} type="text" id="img" />
-<br />
-<label htmlFor="restaurantName">Restaurant name</label>
-<input onChange={this.handleChange} type="text" id="restaurantName" />
-<br />
-<label htmlFor="address">Address</label>
-<input onChange={this.handleChange} type="text" id="address" />
-<br />
-<label htmlFor="cuisines">Cuisines</label>
-<input onChange={this.handleChange} type="text" id="cuisines" />
-<br />
-<label htmlFor="ratings"></label>
-<input onChange={this.handleChange} type="number" min="0" max="5" id="ratings" />
-<br />
 
-<input type="submit" value="Edit Your Review?" />
-</form>
-
-</details>
-</div>
 
 
 
@@ -225,7 +199,6 @@ render = () => {
     <div className="find-button">
     <button onClick={this.newYork}>Find Restaurants at New York</button>
     <button onClick={this.lasVegas}>Find Restaurants at Los Angeles</button>
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
     </div>
     </div>
     <div>
@@ -260,19 +233,3 @@ render = () => {
 
 
 ReactDOM.render(<App></App>, document.querySelector('main'))
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-// add 3 more city buttons
-// edit / delete page
-// css
-// add review string
-// add nav bar
-// add footer
-//
->>>>>>> b3c6e19cd18cb7459a46238c5ade6bed52dbce62
