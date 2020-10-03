@@ -2,19 +2,27 @@ class App extends React.Component {
   state = {
     foods: {},
     restaurant: [],
+    img: '',
     name: '',
-    review: '',
+    city: '',
+    cuisines: '',
     rating: null,
-    reviews:{},
+    favorite:{},
     show: false,
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
-        foods: response.data,
-        food: response.data.best_rated_restaurant
+        // foods: response.data,
+        // food: response.data.best_rated_restaurant
+        favorite: response.data
       })
+    })
+  }
+  changeId = (event) => {
+    this.setState({
+      id: event.target.value
     })
   }
   //HOW TO SET THE CHANGES
@@ -26,14 +34,27 @@ class App extends React.Component {
   //LOADS ZOMATO API DIRECTLY ON PAGE
   newYork= (event) => {
      event.preventDefault()
-     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=280&entity_type=city').then(
+     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.id +'&entity_type=city').then(
          (response) => {
            this.setState({
              foods: response.data,
-             restaurant: response.data.best_rated_restaurant
+             restaurant: response.data.best_rated_restaurant,
            })
+           // console.log(this.state.id);
          }
      )}
+
+     newYork= (event) => {
+        event.preventDefault()
+        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=280&entity_type=city').then(
+            (response) => {
+              this.setState({
+                foods: response.data,
+                restaurant: response.data.best_rated_restaurant,
+              })
+              // console.log(this.state.id);
+            }
+        )}
 
   lasVegas= (event) => {
     event.preventDefault()
@@ -46,11 +67,16 @@ class App extends React.Component {
           }
       )}
   // LOADS CRUD (REVIEW SCHEMA)
-  createReview = (event) => {
+  createFav = (event) => {
     event.preventDefault()
     axios.post('/foods', this.state).then(response => {
       this.setState({
-        reviews: response.data
+        favorite: response.data,
+        img: '',
+        name: '',
+        city: '',
+        cuisines: '',
+        rating: null,
       })
     })
   }
@@ -58,32 +84,30 @@ render = () => {
   return(
     <div>
     <div className="city">
+    <h3>City: {this.state.foods.city}</h3>
     <div className="find-button">
     <button onClick={this.newYork}>Find Restaurants at New York</button>
     <button onClick={this.lasVegas}>Find Restaurants at Los Angeles</button>
-    <h3>City: {this.state.foods.city}</h3>
     </div>
+    </div>
+    <div>
+    <form onSubmit={this.newYork}>
+    <input type="text" onKeyUp={this.changeId}/>
+    <input type="submit" value="Find restaurant"/>
+  </form>
     </div>
     <div className="card-container">
+
     {this.state.restaurant.map (food => {
       return(
         <div className="card">
+
             <img src={food.restaurant.thumb} alt="food-pic"/>
-            <div classNAme="food-info">
+            <div className="food-info">
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
-            <form onSubmit={this.createReview}>
-              <label htmlFor="name">Name: </label>
-              <input id='name' type='text' onChange={this.handleChange} />
-              <br/>
-              <label htmlFor="review">Review: </label>
-              <input id='review' type='text' onChange={this.handleChange} />
-              <br/>
-              <label htmlFor="rating">Rating: </label>
-              <input id='rating' type='number' min='0' max='5' onChange={this.handleChange} />
-              <input type="submit" value="Add A Review" className="update-btn" />
-            </form>
+            <h3>Ratings: {food.restaurant.user_rating.aggregate_rating}</h3>
             </div>
             </div>
 )})}

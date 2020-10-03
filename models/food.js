@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 
 const foodSchema = new mongoose.Schema ({
+  img: String,
   name: String,
-  review: String,
+  city: String,
+  cuisines: String,
   rating: {type: Number , max:5, min:0}
 })
 
