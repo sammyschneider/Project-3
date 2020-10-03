@@ -36,12 +36,6 @@ mongoose.connection.on('connected', () =>
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
 
-<<<<<<< HEAD
-// ROUTES
-const foodController = require('./controllers/food_controller.js')
-app.use('/foods', foodController)
-=======
->>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
