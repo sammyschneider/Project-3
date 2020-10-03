@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const foodSchema = new mongoose.Schema ({
   img: String,
-  name: String,
-  city: String,
+  restaurantName: String,
+  address: String,
   cuisines: String,
-  rating: {type: Number , max:5, min:0}
+  ratings: {type: Number , max:5, min:0}
 })
 
 

@@ -29,7 +29,7 @@ color: black;
 
 
 /* just started the css process its long way from even a quarter done. */
-img {
+.apiImg {
   width: 80%;
   display: block;
 }
@@ -43,7 +43,7 @@ img {
   flex-flow: column;
   justify-content: space-around;
   align-items: center;
-  flex-basis: 20%;
+  flex-basis: 40%;
   margin: 2%;
   box-sizing: border-box;
   padding: 2%;
@@ -54,4 +54,21 @@ img {
   justify-content: space-between;
   padding: 0.5em 1em;
   font-size: 0.85em;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+li {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 28%;
+  margin: 2%;
+  background: #12121212;
+  box-sizing: border-box;
+  padding: 2%;
+  box-shadow: 2px 2px 4px gold;
 }
