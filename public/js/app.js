@@ -1,4 +1,5 @@
 class App extends React.Component {
+  //Updating state to contain review
   state = {
     foods: {},
     restaurant: [],
@@ -19,6 +20,7 @@ class App extends React.Component {
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
+    const review =
     this.setState({
         [event.target.id]: event.target.value
     })
@@ -61,6 +63,13 @@ render = () => {
             <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
+            <h3>Reviews: </h3>
+            {
+              this.state.reviews.forEach((review, i) => {
+
+              });
+
+            }
             <form onSubmit={this.createReview}>
               <label htmlFor="name">Name: </label>
               <input id='name' type='text' onChange={this.handleChange} />
