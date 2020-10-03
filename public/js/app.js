@@ -168,9 +168,10 @@ render = () => {
         </form>
      </div>
      </details>
+     <div className="edit">
      <details>
-<summary>Edit Your Review</summary>
-<div className="edit">
+<summary> Edit Review</summary>
+<form onSubmit={this.updateReview} >
 <label htmlFor="img">Image</label>
 <input onChange={this.handleChange} type="text" id="img" />
 <br />
@@ -188,9 +189,10 @@ render = () => {
 <br />
 
 <input type="submit" value="Edit Your Review?" />
-</div>
-</details>
+</form>
 
+</details>
+</div>
 
 
 
