@@ -95,9 +95,9 @@ newYork= (event) => {
             })
           }
       )}
-  dallasTexas= (event) => {
+  washingtonDc= (event) => {
     event.preventDefault()
-        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=289&entity_type=city').then(
+        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=283&entity_type=city').then(
             (response) => {
               this.setState({
                 foods: response.data,
@@ -157,7 +157,7 @@ render = () => {
           </form>
           <button value ={fav._id}
           onClick={this.deleteReview}
-          >DELETE 
+          >DELETE
           </button>
           </details>
           </div>
@@ -189,29 +189,24 @@ render = () => {
         </form>
      </div>
      </details>
+     <div className="city">
+        <div className="find-button">
+        <button onClick={this.newYork}>Find Restaurants at New York</button>
+        <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
+        <button onClick={this.washingtonDc}>Find Restaurants at Washington DC</button>
+        </div>
+        </div>
+        <div>
+        <form onSubmit={this.findById}>
+        <input type="text" onKeyUp={this.changeId}/>
+        <input type="submit" value="Find restaurant"/>
+        <h3>City: {this.state.foods.city}</h3>
+      </form>
+        </div>
+        <div className="card-container">
 
-
-
-
-
-
-    <div className="city">
-    <div className="find-button">
-    <button onClick={this.newYork}>Find Restaurants at New York</button>
-    <button onClick={this.lasVegas}>Find Restaurants at Los Angeles</button>
-    </div>
-    </div>
-    <div>
-    <form onSubmit={this.findById}>
-    <input type="text" onKeyUp={this.changeId}/>
-    <input type="submit" value="Find restaurant"/>
-    <h3>City: {this.state.foods.city}</h3>
-  </form>
-    </div>
-    <div className="card-container">
-
-    {this.state.restaurant.map (food => {
-      return(
+        {this.state.restaurant.map (food => {
+          return(
         <div className="card">
 
             <img className="apiImg"src={food.restaurant.thumb} alt="food-pic"/>
