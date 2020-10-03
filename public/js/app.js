@@ -20,6 +20,37 @@ class App extends React.Component {
       })
     })
   }
+
+// delete
+
+deleteReview = (event) => {
+  axios.delete('/foods/' + event.target.value)
+  .then(response => this.setState(
+    {favorite: response.data})
+  )
+}
+
+
+
+updateReview = (event) => {
+      event.preventDefault()
+      const id = event.target.id
+      axios
+      .put('/foods/' + id, this.state)
+      .then(response => {
+        this.setState({
+          favorite: response.data,
+          img: '',
+          restaurantName: '',
+          address: '',
+          cuisines: '',
+          ratings: null,
+        })
+      })
+    }
+
+
+
   changeId = (event) => {
     this.setState({
       id: event.target.value
@@ -104,6 +135,11 @@ render = () => {
          <h4>Address: {fav.address}</h4>
          <h4>Cuisines: {fav.cuisines}</h4>
          <h4>Ratings: {fav.ratings}</h4>
+         <button
+          value ={fav._id}
+         onClick={this.deleteReview}
+         > DELETE
+         </button>
          </div>
        )
      })}
@@ -132,6 +168,34 @@ render = () => {
         </form>
      </div>
      </details>
+     <details>
+<summary>Edit Your Review</summary>
+<div className="edit">
+<label htmlFor="img">Image</label>
+<input onChange={this.handleChange} type="text" id="img" />
+<br />
+<label htmlFor="restaurantName">Restaurant name</label>
+<input onChange={this.handleChange} type="text" id="restaurantName" />
+<br />
+<label htmlFor="address">Address</label>
+<input onChange={this.handleChange} type="text" id="address" />
+<br />
+<label htmlFor="cuisines">Cuisines</label>
+<input onChange={this.handleChange} type="text" id="cuisines" />
+<br />
+<label htmlFor="ratings"></label>
+<input onChange={this.handleChange} type="number" min="0" max="5" id="ratings" />
+<br />
+
+<input type="submit" value="Edit Your Review?" />
+</div>
+</details>
+
+
+
+
+
+
     <div className="city">
     <div className="find-button">
     <button onClick={this.newYork}>Find Restaurants at New York</button>
@@ -170,3 +234,16 @@ render = () => {
 
 
 ReactDOM.render(<App></App>, document.querySelector('main'))
+
+
+
+
+
+
+// add 3 more city buttons
+// edit / delete page
+// css
+// add review string
+// add nav bar
+// add footer
+//
