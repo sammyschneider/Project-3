@@ -9,7 +9,10 @@ color: black;
   font-family: 'Rokkitt', serif;
 }
 .find-button{
+<<<<<<< HEAD
   display: flex;
+=======
+>>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
   background-color: #147842;
     font-family: 'Acme', sans-serif;
     width: 100px;
@@ -21,14 +24,26 @@ color: black;
     margin: 20px 0;
     transition: 0.3s all;
   }
+<<<<<<< HEAD
+=======
+.find-button:hover {
+  background-color: #147842;
+}
+>>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
 
 .info {
   font-family: 'Rokkitt', serif;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
 
 
 
 /* just started the css process its long way from even a quarter done. */
+<<<<<<< HEAD
 .apiImg {
   width: 80%;
   display: block;
@@ -48,6 +63,23 @@ color: black;
   box-sizing: border-box;
   padding: 2%;
   box-shadow: 2px 2px 4px;
+=======
+.card-container {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.food-card {
+  width: 44%;
+  margin: 1em 0;
+  background: white;
+  box-shadow: 3px 3px #eee;
+  box-sizing: border-box;
+}
+img {
+  width: 100%;
+>>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
 }
 .food-info {
   /* display: flex; */
@@ -55,6 +87,7 @@ color: black;
   padding: 0.5em 1em;
   font-size: 0.85em;
 }
+<<<<<<< HEAD
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -72,3 +105,6 @@ li {
   padding: 2%;
   box-shadow: 2px 2px 4px gold;
 }
+=======
+>>>>>>> 5f1ddb991e773d070638b69446410aacf9a0d88c
+>>>>>>> b7da0f6a9057ac63b5641107c8d89eac84aa6a83
