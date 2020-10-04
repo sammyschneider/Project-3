@@ -80,7 +80,7 @@ textarea {
   min-height: 10px;
 }
 body {
-  background-image: url('https://cdn.pixabay.com/photo/2016/11/18/14/05/brick-wall-1834784__340.jpg');
+  background-image: url('https://cdn.pixabay.com/photo/2015/03/26/09/54/restaurant-690569_960_720.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -91,8 +91,9 @@ body {
   background: #3a99b51f;
 }
 .find-btn{
-  font-size: larger;
+  font-size: 100%;
   margin-left: 1%;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .footer-bottom {
   position: relative;
@@ -111,6 +112,7 @@ body {
 }
 .form-rj {
   width: 20%;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .city {
   color: white;
