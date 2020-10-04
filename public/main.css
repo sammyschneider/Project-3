@@ -2,27 +2,20 @@
 text-align: center;
 font-family: 'Rock Salt', cursive;
 text-decoration: none;
-color: black;
+color: white;
 }
 .city {
   text-align: center;
   font-family: 'Rokkitt', serif;
 }
 .find-button{
-    width: 15%;
-    border-radius: 3px;
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 1%;
   }
-/* .find-button:hover {
-  background-color: #6500d4cf;
-} */
-
 .info {
   font-family: 'Rokkitt', serif;
 }
-
-
-/* just started the css process its long way from even a quarter done. */
 .card-container {
   display: flex;
   width: 80%;
@@ -50,6 +43,7 @@ img {
 }
 .find-button {
   margin: auto;
+  margin-top: 2%;
 }
 .weight{
   font-weight: 200;
@@ -62,7 +56,7 @@ img {
   outline: 1px solid black;
   padding: 5%;
   margin: 2%;
-  background-color: cornsilk;
+  background-color: #3a99b51f;
 }
 .add-review {
   float: right;
@@ -70,44 +64,62 @@ img {
 .anchors {
   text-decoration: none;
   color: black;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bolder;
 }
 .review-padding {
   padding: 3%;
 }
 .anchors:hover {
   text-decoration: none;
-  color: #6500d4cf;
+  color: blue;
 }
 textarea {
   max-width: 100%;
   max-height: 100px;
   min-height: 10px;
 }
-/* .edit-remove {
-  display: flex;
-} */
 body {
-  background-image: url('https://cdn.pixabay.com/photo/2017/08/07/22/57/coffee-2608864__340.jpg');
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/18/14/05/brick-wall-1834784__340.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 .RJ {
-  color: black;
+  color: white;
   padding: 1%;
-  background: cornsilk;
+  background: #3a99b51f;
 }
 .find-btn{
   font-size: larger;
+  margin-left: 1%;
 }
 .footer-bottom {
-  position: sticky;
+  position: relative;
   bottom: 0;
-  background: cornsilk;
-  padding: 1%;
+  background: #3a99b51f;
+  padding: 2%;
 }
 .footer {
-  color: black;
+  color: white;
   text-align: center;
-  font-family: 'Rock Salt', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+}
+.form-rj {
+  width: 20%;
+}
+.city {
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bolder;
+  background: #3a99b51f;
+  width: fit-content;
+  margin: auto;
+  margin-top: 2%;
 }

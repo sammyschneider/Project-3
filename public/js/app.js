@@ -22,6 +22,16 @@ class App extends React.Component {
       })
     })
   }
+  //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
+  componentDidMount = () => {
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(response => {
+      this.setState({
+        foods: response.data,
+        restaurant: response.data.best_rated_restaurant,
+        cityName: response.data.city
+      })
+    })
+  }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
     const review = this.state.review;
@@ -32,16 +42,23 @@ class App extends React.Component {
       review: review
     })
 }
+//HOW TO SET THE CITY
+handleCityChange = (event) => {
+  this.setState({
+    city: event.target.value
+  })
+}
 
 
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findFood = (event) => {
      event.preventDefault()
-     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
+     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.city + '&entity_type=city').then(
          (response) => {
            this.setState({
              foods: response.data,
-             restaurant: response.data.best_rated_restaurant
+             restaurant: response.data.best_rated_restaurant,
+             cityName: response.data.city
            })
          }
      )}
@@ -89,16 +106,16 @@ updateReview = (event) => {
 render = () => {
   return(
     <div>
-    <div className="city">
     <div className="find-button">
-    <button className='btn btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
+    <input placeholder='City ID' className='form-rj' type='text' onKeyUp={this.handleCityChange}/>
+    <button className='btn-sm btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
     </div>
-    </div>
+    <div><h6 className='city'>City: {this.state.cityName}</h6></div>
     <div className="card-container">
     {this.state.restaurant.map (food => {
       return(
           <div className="food-card">
-            <img src={food.restaurant.featured_image} alt="food-pic"/>
+            <img className='card-image' src={food.restaurant.featured_image} alt="food-pic"/>
           <div className="food-info">
             <h3><a className='anchors' href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h5 className="weight">{food.restaurant.cuisines}</h5>
@@ -146,7 +163,7 @@ render = () => {
           </div>
       )})}
       </div>
-      <div className='footer-bottom'><footer className='footer'><h4>Created by RJ, Sammy, Brandon, Ricky</h4></footer></div>
+      <div className='footer-bottom'><footer className='footer'><h6 className='created'>Created by RJ, Sammy, Brandon, Ricky</h6></footer></div>
     </div>
   )
   }
