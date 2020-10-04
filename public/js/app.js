@@ -170,6 +170,16 @@ findChicago= (event) => {
             })
           }
         )}
+findAtlanta= (event) => {
+  event.preventDefault()
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=288&entity_type=city').then(
+        (response) => {
+        this.setState({
+        foods: response.data,
+        restaurant: response.data.best_rated_restaurant
+            })
+          }
+        )}
 
   // LOADS CRUD (Favorite restaurant SCHEMA)
   createFav = (event) => {
@@ -183,15 +193,40 @@ findChicago= (event) => {
 render = () => {
   return(
     <div className="container">
+    <div className="favRestaurants">
     <h2>Favorite Restaurants</h2>
+    <details>
+    <summary>Add your favorite restaurant </summary>
+   <div className="addForm">
+   <form onSubmit={this.createFav}>
+        <label htmlFor="img">Image: </label><br/>
+        <input onChange={this.handleChange} type="text" id="img" />
+        <br />
+        <label htmlFor="restaurantName">Restaurant name: </label><br/>
+        <input onChange={this.handleChange} type="text" id="restaurantName" />
+        <br />
+        <label htmlFor="address">Address: </label><br/>
+        <input onChange={this.handleChange} type="text" id="address" />
+        <br />
+        <label htmlFor="cuisines">Cuisines: </label><br/>
+        <input onChange={this.handleChange} type="text" id="cuisines" />
+        <br />
+        <label htmlFor="ratings">Ratings</label><br/>
+        <input onChange={this.handleChange} type="number" min="0" max="5"step="0.1"id="ratings" />
+        <br />
+
+        <input type="submit" value="Add Favorite Restaurant" />
+      </form>
+      </div>
+   </details>
     <ul>
      {this.state.favorite.map((fav) => {
        return(
-         <div>
-         <img src={fav.img}/>
+         <div className="favRest">
+         <img className="favImg"src={fav.img}/>
          <h4>Name: {fav.restaurantName}</h4>
-         <h4>Address: {fav.address}</h4>
          <h4>Cuisines: {fav.cuisines}</h4>
+         <h4>Address: {fav.address}</h4>
          <h4>Ratings: {fav.ratings}</h4>
          <div className="edit">
          <details>
@@ -225,45 +260,24 @@ render = () => {
        )
      })}
      </ul>
-      <details>
-      <summary>Add your favorite restaurant </summary>
-     <div className="addForm">
-     <form onSubmit={this.createFav}>
-          <label htmlFor="img">Image: </label>
-          <input onChange={this.handleChange} type="text" id="img" />
-          <br />
-          <label htmlFor="restaurantName">Restaurant name: </label>
-          <input onChange={this.handleChange} type="text" id="restaurantName" />
-          <br />
-          <label htmlFor="address">Address: </label>
-          <input onChange={this.handleChange} type="text" id="address" />
-          <br />
-          <label htmlFor="cuisines">Cuisines: </label>
-          <input onChange={this.handleChange} type="text" id="cuisines" />
-          <br />
-          <label htmlFor="ratings"></label>
-          <input onChange={this.handleChange} type="number" min="0" max="5"step="0.1"id="ratings" />
-          <br />
+</div>
+      <div className="findRestaurant">
+     <form className="idForm"onSubmit={this.findById}>
+     <input type="text" onKeyUp={this.changeId} placeholder="use city id"/>
+     <input type="submit" value="Find restaurant"/>
 
-          <input type="submit" value="Add Favorite Restaurant" />
-        </form>
-     </div>
-     </details>
-     <div className="city">
+      </form>
         <div className="find-button">
         <button onClick={this.newYork}>Find Restaurants at New York</button>
         <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
         <button onClick={this.washingtonDc}>Find Restaurants at Washington DC</button>
         <button onClick={this.findAustin}>Find Restaurants at Austin</button>
         <button onClick={this.findChicago}>Find Restaurants at Chicago</button>
+        <button onClick={this.findAtlanta}>Find Restaurants at Atlanta</button>
         </div>
-        </div>
+
         <div>
-        <form onSubmit={this.findById}>
-        <input type="text" onKeyUp={this.changeId}/>
-        <input type="submit" value="Find restaurant"/>
-        <h3>City: {this.state.foods.city}</h3>
-      </form>
+        <h3 className="city">City: {this.state.foods.city}</h3>
         </div>
         <div className="card-container">
         {this.state.restaurant.map (food => {
@@ -283,13 +297,13 @@ render = () => {
                 .map((review, i) => {
                   return(
                     <div key={i}>
-                      <h2>Name:{review.name}</h2>
+                      <p>Name:{review.name}</p>
                       <p>Rating:{review.rating}</p>
                       <p>{review.review_content}</p>
                       <button onClick={this.deleteReview} id={review._id}>delete</button>
                       <details>
                       <summary>Edit review</summary>
-                      <form id={restaurant_id} onSubmit={this.updateReview}>
+                      <form id={review._id} onSubmit={this.updateReview}>
                       <label htmlFor="name">Name</label>
                       <br />
                       <input
@@ -325,6 +339,8 @@ render = () => {
                   )
                 })
               }
+              <details>
+              <summary>Add Review</summary>
               <form onSubmit={this.createReview}>
                 <input id='restaurant_id' type='hidden' value={food.restaurant.id} />
                 <label htmlFor="name">Name: </label>
@@ -337,13 +353,13 @@ render = () => {
                 <input id='rating' type='number' min='0' max='5' step="0.1" onChange={this.reviewChange} />
                 <input type="submit" value="Add A Review" className="update-btn" />
               </form>
-
+              </details>
             </div>
             </div>
 )})}
 
       </div>
-
+</div>
     </div>
   )
   }
