@@ -51,7 +51,7 @@ handleCityChange = (event) => {
 
 
   //LOADS ZOMATO API DIRECTLY ON PAGE
-  findFood = (event) => {
+  newYork= (event) => {
      event.preventDefault()
      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.city + '&entity_type=city').then(
          (response) => {
@@ -62,6 +62,7 @@ handleCityChange = (event) => {
            })
          }
      )}
+
   // LOADS CRUD (REVIEW SCHEMA)
   createReview = (event) => {
     event.preventDefault()

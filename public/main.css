@@ -16,8 +16,6 @@ color: white;
 .info {
   font-family: 'Rokkitt', serif;
 }
-<<<<<<< HEAD
-
 
 /* just started the css process its long way from even a quarter done. */
 img {
@@ -26,7 +24,7 @@ img {
   display: block;
 }
 =======
->>>>>>> d09a3750ee5bf5d0d186148d6d5a9e6928e941c6
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -143,5 +141,5 @@ body {
   width: fit-content;
   margin: auto;
   margin-top: 2%;
->>>>>>> d09a3750ee5bf5d0d186148d6d5a9e6928e941c6
 }
+>>>>>>> 765d8e5b06a46baa228ca3aa0db10468a7b5ec69
