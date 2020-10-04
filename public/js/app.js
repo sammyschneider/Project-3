@@ -35,8 +35,6 @@ deleteRestaurant = (event) => {
   )
 }
 
-
-
 updateRestaurant = (event) => {
       event.preventDefault()
       const id = event.target.id
@@ -53,15 +51,15 @@ updateRestaurant = (event) => {
         })
       })
     }
-    // LOADS CRUD (REVIEW SCHEMA)
-   createReview = (event) => {
-     event.preventDefault()
-     axios.post('/foods', this.state.review).then(response => {
-       this.setState({
-         reviews: response.data
-       })
+  // LOADS CRUD (REVIEW SCHEMA)
+ createReview = (event) => {
+   event.preventDefault()
+   axios.post('/foods', this.state.review).then(response => {
+     this.setState({
+       reviews: response.data
      })
-   }
+   })
+ }
 
    // Deletes Review
 deleteReview = (event) => {
@@ -71,6 +69,20 @@ deleteReview = (event) => {
     })
   })
 }
+updateReview = (event) => {
+  event.preventDefault()
+  const id = event.target.id
+  axios.put('/foods'+id, this.state).then(response => {
+    this.setState({
+      reviews: response.data,
+      name: '',
+      review_content: '',
+      rating: null
+    })
+  })
+}
+
+  // To get restaurants using id //
   changeId = (event) => {
     this.setState({
       id: event.target.value
@@ -78,7 +90,6 @@ deleteReview = (event) => {
   }
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
-
     this.setState({
         [event.target.id]: event.target.value
     })
@@ -139,7 +150,28 @@ newYork= (event) => {
               }
           )}
 
-  // LOADS CRUD (REVIEW SCHEMA)
+  findAustin= (event) => {
+    event.preventDefault()
+      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=278&entity_type=city').then(
+          (response) => {
+          this.setState({
+          foods: response.data,
+          restaurant: response.data.best_rated_restaurant
+              })
+            }
+          )}
+findChicago= (event) => {
+  event.preventDefault()
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=292&entity_type=city').then(
+        (response) => {
+        this.setState({
+        foods: response.data,
+        restaurant: response.data.best_rated_restaurant
+            })
+          }
+        )}
+
+  // LOADS CRUD (Favorite restaurant SCHEMA)
   createFav = (event) => {
     event.preventDefault()
     axios.post('/foods', this.state).then(response => {
@@ -178,7 +210,7 @@ render = () => {
           <input onChange={this.handleChange} type="text" id="cuisines" />
           <br />
           <label htmlFor="ratings">Ratings: </label>
-          <input onChange={this.handleChange} type="number" min="0" max="5" id="ratings" />
+          <input onChange={this.handleChange} type="number" min="0" max="5" step="0.1" id="ratings" />
           <br />
 
           <input type="submit" value="Edit Your Restaurant" />
@@ -210,7 +242,7 @@ render = () => {
           <input onChange={this.handleChange} type="text" id="cuisines" />
           <br />
           <label htmlFor="ratings"></label>
-          <input onChange={this.handleChange} type="number" min="0" max="5" id="ratings" />
+          <input onChange={this.handleChange} type="number" min="0" max="5"step="0.1"id="ratings" />
           <br />
 
           <input type="submit" value="Add Favorite Restaurant" />
@@ -222,6 +254,8 @@ render = () => {
         <button onClick={this.newYork}>Find Restaurants at New York</button>
         <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
         <button onClick={this.washingtonDc}>Find Restaurants at Washington DC</button>
+        <button onClick={this.findAustin}>Find Restaurants at Austin</button>
+        <button onClick={this.findChicago}>Find Restaurants at Chicago</button>
         </div>
         </div>
         <div>
@@ -243,7 +277,7 @@ render = () => {
             <h3>Ratings: {food.restaurant.user_rating.aggregate_rating}</h3>
             <h3>Reviews: </h3>
               {
-                this.state.reviews.filter((review) => {
+                this.state.reviews.filter(review => {
                   return food.restaurant.id == review.restaurant_id
                 })
                 .map((review, i) => {
@@ -253,6 +287,40 @@ render = () => {
                       <p>Rating:{review.rating}</p>
                       <p>{review.review_content}</p>
                       <button onClick={this.deleteReview} id={review._id}>delete</button>
+                      <details>
+                      <summary>Edit review</summary>
+                      <form id={restaurant_id} onSubmit={this.updateReview}>
+                      <label htmlFor="name">Name</label>
+                      <br />
+                      <input
+                        type="text"
+                        id="name"
+                        onChange={this.handleChange}
+                        placeholder={review.name}
+                      />
+                      <br />
+                      <label htmlFor="review_content">Review</label>
+                      <br />
+                      <input
+                        type="text"
+                        id="review_content"
+                        onChange={this.handleChange}
+                        placeholder={review.review_content}
+                      />
+                      <br />
+                      <label htmlFor="rating">rating</label>
+                      <br />
+                      <input
+                        type="number"
+                        id="rating"
+                        min="0" max="5" step="0.1"
+                        onChange={this.handleChange}
+                        placeholder={review.rating}
+                      />
+                      <br />
+                      <input type="submit" value="Edit Review" />
+                    </form>
+                      </details>
                     </div>
                   )
                 })
@@ -266,9 +334,10 @@ render = () => {
                 <input id='review_content' type='text' onChange={this.reviewChange} />
                 <br/>
                 <label htmlFor="rating">Rating: </label>
-                <input id='rating' type='number' min='0' max='5' onChange={this.reviewChange} />
+                <input id='rating' type='number' min='0' max='5' step="0.1" onChange={this.reviewChange} />
                 <input type="submit" value="Add A Review" className="update-btn" />
               </form>
+
             </div>
             </div>
 )})}
