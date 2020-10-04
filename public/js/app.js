@@ -144,12 +144,7 @@ newYork= (event) => {
     event.preventDefault()
     axios.post('/foods', this.state).then(response => {
       this.setState({
-        favorite: response.data,
-        img: '',
-        restaurantName: '',
-        address: '',
-        cuisines: '',
-        ratings: null,
+        favorite: response.data
       })
     })
   }

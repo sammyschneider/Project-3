@@ -7,7 +7,7 @@ const foodSchema = new mongoose.Schema ({
   cuisines: String,
   ratings: {type: Number , max:5, min:0},
   name: String,
-  review_content: String,
+  review_content:String,
   rating: {type: Number , max:5, min:0},
   restaurant_id: String
 })
