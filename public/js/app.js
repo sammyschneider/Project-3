@@ -72,13 +72,15 @@ deleteReview = (event) => {
 updateReview = (event) => {
   event.preventDefault()
   const id = event.target.id
-  axios.put('/foods'+id, this.state).then(response => {
+  axios.put('/foods/'+id, this.state).then(response => {
     this.setState({
       reviews: response.data,
       name: '',
       review_content: '',
-      rating: null
+      rating: null,
+      restaurant_id: ''
     })
+    console.log(event.target.restaurant_id);
   })
 }
 
