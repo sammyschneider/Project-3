@@ -1,3 +1,17 @@
+
+  body {
+    background-image: url('https://mk0tarestaurant7omoy.kinstacdn.com/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: black;
+  }
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 90px;
+}
 .header-tag{
 text-align: center;
 font-family: 'Rock Salt', cursive;
@@ -5,9 +19,10 @@ text-decoration: none;
 color: white;
 }
 .city {
-  text-align: center;
   font-family: 'Rokkitt', serif;
+  font-size: 2vw;
 }
+<<<<<<< HEAD
 .find-button{
     display: flex;
     justify-content: center;
@@ -16,10 +31,39 @@ color: white;
 .info {
   font-family: 'Rokkitt', serif;
 }
+=======
+button {
+  padding: 5px;
+  margin-left: 5px;
+}
+.idForm{
+  display:flex;
+  justify-content: flex-end;
+}
+.info {
+  font-family: 'Rokkitt', serif;
+}
+.findRestaurant{
+  margin-left: 1em;
+  margin-top: -50px;
+  margin-bottom: 0.2em;
+}
+.favRest {
+  width: 200px;
+  border: 1px solid black;
+background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+}
+/* just started the css process its long way from even a quarter done. */
+.apiImg {
+  width: 80%;
+  display: block;
+}
+>>>>>>> 0ba33e0c6d81aedec77a27af0e10e5ce33b09235
 .card-container {
   display: flex;
   width: 80%;
   flex-wrap: wrap;
+<<<<<<< HEAD
   justify-content: space-around;
   margin: auto;
 }
@@ -34,6 +78,21 @@ img {
   width: 100%;
   display: block;
   padding: 3%;
+=======
+  justify-content: flex-start;
+}
+.food-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 40%;
+  margin: 2%;
+  box-sizing: border-box;
+  padding: 1%;
+  box-shadow: 2px 2px 4px;
+background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+>>>>>>> 0ba33e0c6d81aedec77a27af0e10e5ce33b09235
 }
 .food-info {
   /* display: flex; */
@@ -41,6 +100,7 @@ img {
   padding: 0.5em 1em;
   font-size: 0.85em;
 }
+<<<<<<< HEAD
 .find-button {
   margin: auto;
   margin-top: 2%;
@@ -125,3 +185,10 @@ body {
   margin: auto;
   margin-top: 2%;
 }
+=======
+ul {
+  display: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+>>>>>>> 0ba33e0c6d81aedec77a27af0e10e5ce33b09235

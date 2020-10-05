@@ -1,7 +1,11 @@
 const express = require('express')
 const foods = express.Router()
 const Food = require('../models/food.js')
+<<<<<<< HEAD
 
+=======
+const foodSeed = require('../models/seed.js')
+>>>>>>> 0ba33e0c6d81aedec77a27af0e10e5ce33b09235
 // =======================================
 //              ROUTES
 // =======================================
@@ -47,6 +51,16 @@ foods.delete('/:id', (req, res) => {
     })
   })
 })
+<<<<<<< HEAD
 
+=======
+//Seed
+foods.get('/seed', (req, res) => {
+  Food.insertMany(foodSeed, (err, manyFood) => {
+    res.redirect('/')
+  })
+})
+>>>>>>> 0ba33e0c6d81aedec77a27af0e10e5ce33b09235
 //DROP COLLECTION
+
 module.exports = foods;
