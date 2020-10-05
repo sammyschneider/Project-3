@@ -14,9 +14,7 @@ class App extends React.Component {
       review_content: '',
       rating: null,
       restaurant_id: ''
-    },
-    show: false,
-    showFav: false,
+    }
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
 
