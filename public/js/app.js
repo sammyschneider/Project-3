@@ -255,8 +255,12 @@ render = () => {
     <h2>My favorites</h2>
      {this.state.favorite.map((fav) => {
        return(
+         <div>
+          { (fav.restaurantName) ?
          <div className="favRest">
+
          <img className="favImg"src={fav.img}/>
+
          <details>
          <summary>{fav.restaurantName}</summary>
          <h4>Cuisines: {fav.cuisines}</h4>
@@ -291,6 +295,7 @@ render = () => {
           </details>
           </div>
           </details>
+         </div> : null}
          </div>
        )
      })}

@@ -5,7 +5,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* background-color: rgba(0, 0, 0, 0.6); */
-    color: black;
+    color: white;
     font-family: 'Rock Salt', cursive;
   }
 .container {
@@ -20,7 +20,7 @@ text-decoration: none;
 color: black;
 }
 .city {
-  font-family: 'Rokkitt', serif;
+  font-family: 'Rokkit', serif;
   font-size: 2vw;
   color: #f3e7e9;
 }
@@ -44,7 +44,7 @@ button:hover{
   width: 200px;
   margin: 2%;
   border: 1px solid black;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.5);
 /* background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%); */
 }
 /* just started the css process its long way from even a quarter done. */
@@ -66,7 +66,7 @@ button:hover{
   box-sizing: border-box;
   padding: 1%;
   box-shadow: 2px 2px 4px white;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.4);
 /* background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%); */
 }
 .food-info {
