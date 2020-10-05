@@ -14,6 +14,9 @@ class App extends React.Component {
     showReview: false
 
   }
+
+
+
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
     axios.get('/foods').then(response => {
@@ -51,7 +54,7 @@ handleCityChange = (event) => {
 
 
   //LOADS ZOMATO API DIRECTLY ON PAGE
-  newYork= (event) => {
+  findFood = (event) => {
      event.preventDefault()
      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.city + '&entity_type=city').then(
          (response) => {
@@ -62,7 +65,6 @@ handleCityChange = (event) => {
            })
          }
      )}
-
   // LOADS CRUD (REVIEW SCHEMA)
   createReview = (event) => {
     event.preventDefault()
@@ -148,14 +150,26 @@ render = () => {
                         <summary>
                           <i onClick={this.toggleReview} className="fas fa-pencil-alt"></i>
                         </summary>
+
+
+
+
+                        <summary>
                         {this.state.showReview ? <form onSubmit={this.updateReview} id={review._id}>
-                          <input type='text' id='name' className='rating' onChange={this.handleChange}/>
+                          <input type='text' id='name' className='rating' onChange={this.handle} />
                           <br/>
-                          <textarea className='rating' id='review_content' onChange={this.hangleChange}/>
+                          <textarea className='review' id='review_content' onChange={this.handleChange} />
                           <br/>
-                          <input type='number' className='rating' id='rating' min='0' max='5'onChange={this.handleChange}/>
+                          <input type='number' className='rating' id='rating' min='0' max='5'onChange={this.handleChange} />
                           <input className="btn-sm btn-outline-success" type="submit" value="Update" />
                           </form> : null}
+                          </summary>
+
+
+
+
+
+
                      </div>
                   )
                 })

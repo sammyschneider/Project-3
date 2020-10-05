@@ -16,17 +16,9 @@ color: white;
 .info {
   font-family: 'Rokkitt', serif;
 }
-
-/* just started the css process its long way from even a quarter done. */
-img {
-  width: 90%;
-  height: 50%;
-  display: block;
-}
-=======
-
 .card-container {
   display: flex;
+  width: 80%;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
@@ -110,15 +102,6 @@ body {
   padding: 2%;
 }
 .footer {
-<<<<<<< HEAD
-  font-family: 'Rock Salt', cursive;
-  width: 50%;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-=======
   color: white;
   text-align: center;
     font-family: 'Josefin Sans', sans-serif;
@@ -137,9 +120,8 @@ body {
   font-size: 2em;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bolder;
-  background: #3a99b51f;
+ /* background: #3a99b51f; */
   width: fit-content;
   margin: auto;
   margin-top: 2%;
 }
->>>>>>> 765d8e5b06a46baa228ca3aa0db10468a7b5ec69
