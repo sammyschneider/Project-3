@@ -95,12 +95,16 @@ updateReview = (event) => {
   })
 }
 
-  // To get restaurants using id //
-  changeId = (event) => {
+//HOW TO SET THE CITY
+handleCityChange = (event) => {
+  event.preventDefault();
+  axios.get('https://developers.zomato.com/api/v2.1/cities?apikey=a5408e7fd89832c5bc693f21db7f0abf&q=' + event.target.value).then(response => {
     this.setState({
-      id: event.target.value
-    })
-  }
+      city: response.data.location_suggestions[0].id
+    }), console.log(this.state.city);
+  })
+}
+
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
     this.setState({
@@ -120,11 +124,12 @@ reviewChange = (event) => {
   //LOADS ZOMATO API DIRECTLY ON PAGE
   findById = (event) => {
      event.preventDefault()
-     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.id +'&entity_type=city').then(
+     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.city+'&entity_type=city').then(
          (response) => {
            this.setState({
              foods: response.data,
              restaurant: response.data.best_rated_restaurant,
+             cityName: response.data.city
            })
            // console.log(this.state.id);
          }
@@ -295,16 +300,16 @@ render = () => {
         <div className="find-button">
         <details className="dropDown">
         <summary>Quick Search</summary>
-        <button onClick={this.newYork}>Find Restaurants at New York</button>
-        <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
-        <button onClick={this.washingtonDc}>Find Restaurants at W.DC</button>
-        <button onClick={this.findAustin}>Find Restaurants at Austin</button>
-        <button onClick={this.findChicago}>Find Restaurants at Chicago</button>
-        <button onClick={this.findAtlanta}>Find Restaurants at Atlanta</button>
+        <button onClick={this.newYork}>New York</button>
+        <button onClick={this.lasVegas}>Las Vegas</button>
+        <button onClick={this.washingtonDc}>Washington DC</button>
+        <button onClick={this.findAustin}>Austin</button>
+        <button onClick={this.findChicago}>Chicago</button>
+        <button onClick={this.findAtlanta}>Atlanta</button>
         </details>
 
         <form className="idForm"onSubmit={this.findById}>
-         <input className="idInput"type="text" onKeyUp={this.changeId} placeholder="use city id"/>
+         <input className="idInput"type="text" onKeyUp={this.handleCityChange} placeholder="city name"/>
         <input className="submitId"type="submit" value="Find restaurant"/>
          </form>
          </div>
@@ -400,3 +405,13 @@ render = () => {
 
 
 ReactDOM.render(<App></App>, document.querySelector('main'))
+
+
+// graveyard
+
+// To get restaurants using id //
+// changeId = (event) => {
+//   this.setState({
+//     id: event.target.value
+//   })
+// }

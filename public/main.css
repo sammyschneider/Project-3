@@ -4,7 +4,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: rgba(0, 0, 0, 0.9);
+    /* background-color: rgba(0, 0, 0, 0.6); */
     color: black;
     font-family: 'Rock Salt', cursive;
   }
@@ -22,6 +22,7 @@ color: black;
 .city {
   font-family: 'Rokkitt', serif;
   font-size: 2vw;
+  color: #f3e7e9;
 }
 button {
   padding: 10px;
@@ -87,9 +88,7 @@ margin-right: 5%;
   margin-right: 7%;
   margin-top: -90px;
 }
-.idForm{
-  margin-left: 0.5%;
-}
+
 .idInput{
   padding: 8px 80px;
   /* margin-left: 12%; */
