@@ -103,6 +103,73 @@ updateReview = (event) => {
           showReview: !this.state.showReview
         })
     }
+
+
+
+
+newYork= (event) => {
+  event.preventDefault()
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=280&entity_type=city').then(
+        (response) => {
+        this.setState({
+          foods: response.data,
+          restaurant: response.data.best_rated_restaurant,
+          })
+              // console.log(this.state.id);
+            }
+        )}
+
+  lasVegas= (event) => {
+    event.preventDefault()
+      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(
+          (response) => {
+            this.setState({
+              foods: response.data,
+              restaurant: response.data.best_rated_restaurant
+            })
+          }
+      )}
+  washingtonDc= (event) => {
+    event.preventDefault()
+        axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=283&entity_type=city').then(
+            (response) => {
+              this.setState({
+                foods: response.data,
+                restaurant: response.data.best_rated_restaurant
+                })
+              }
+          )}
+
+  findAustin= (event) => {
+    event.preventDefault()
+      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=278&entity_type=city').then(
+          (response) => {
+          this.setState({
+          foods: response.data,
+          restaurant: response.data.best_rated_restaurant
+              })
+            }
+          )}
+findChicago= (event) => {
+  event.preventDefault()
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=292&entity_type=city').then(
+        (response) => {
+        this.setState({
+        foods: response.data,
+        restaurant: response.data.best_rated_restaurant
+            })
+          }
+        )}
+findAtlanta= (event) => {
+  event.preventDefault()
+    axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=288&entity_type=city').then(
+        (response) => {
+        this.setState({
+        foods: response.data,
+        restaurant: response.data.best_rated_restaurant
+            })
+          }
+        )}
 render = () => {
   return(
     <div>
@@ -110,7 +177,16 @@ render = () => {
     <input placeholder='City ID' className='form-rj' type='text' onKeyUp={this.handleCityChange}/>
     <button className='btn-sm btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
     </div>
-    <div><h6 className='city'>City: {this.state.cityName}</h6></div>
+    <div className="find-button">
+        <button onClick={this.newYork}>Find New York Restaurants</button>
+        <button onClick={this.lasVegas}>Find Las Vegas Restaurants</button>
+        <button onClick={this.washingtonDc}>Find Washington DC Restaurants</button>
+        <button onClick={this.findAustin}>Find Austin Restaurants</button>
+        <button onClick={this.findChicago}>Find Chicago Restaurants</button>
+        <button onClick={this.findAtlanta}>Find Atlanta Restaurants</button>
+        </div>
+
+    <div><h6 className='city'>City: {this.state.foods.city}</h6></div>
     <div className="card-container">
     {this.state.restaurant.map (food => {
       return(

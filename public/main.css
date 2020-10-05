@@ -125,3 +125,7 @@ body {
   margin: auto;
   margin-top: 2%;
 }
+
+.find-button {
+  font-family: 'Josefin Sans', sans-serif;
+}
