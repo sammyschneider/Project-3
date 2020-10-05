@@ -104,15 +104,21 @@ body {
 .footer {
   color: white;
   text-align: center;
-    font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  position: initial;
+  bottom: 0;
+  left: 35%;
+  background: #3a99b51f;
+  padding: 2%;
 }
 .card-image {
   width: 100%;
   height: 200px;
 }
 .form-rj {
-  width: 20%;
+  width: 50%;
   font-family: 'Josefin Sans', sans-serif;
+  margin-right: 2%;
 }
 .city {
   color: white;

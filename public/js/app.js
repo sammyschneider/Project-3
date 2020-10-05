@@ -16,14 +16,6 @@ class App extends React.Component {
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
-    axios.get('/foods').then(response => {
-      this.setState({
-        reviews: response.data
-      })
-    })
-  }
-  //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
-  componentDidMount = () => {
     axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=282&entity_type=city').then(response => {
       this.setState({
         foods: response.data,
@@ -32,6 +24,15 @@ class App extends React.Component {
       })
     })
   }
+  //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
+  componentDidMount = () => {
+    axios.get('/foods').then(response => {
+      this.setState({
+        reviews: response.data
+      })
+    })
+  }
+
   //HOW TO SET THE CHANGES
   handleChange = (event) => {
     const review = this.state.review;
@@ -42,10 +43,18 @@ class App extends React.Component {
       review: review
     })
 }
+  handleReviewChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
 //HOW TO SET THE CITY
 handleCityChange = (event) => {
-  this.setState({
-    city: event.target.value
+  event.preventDefault();
+  axios.get('https://developers.zomato.com/api/v2.1/cities?apikey=a5408e7fd89832c5bc693f21db7f0abf&q=' + event.target.value).then(response => {
+    this.setState({
+      city: response.data.location_suggestions[0].id
+    }), console.log(this.state.city);
   })
 }
 
@@ -84,11 +93,15 @@ deleteReview = (event) => {
 //EDIT REVIEW
 updateReview = (event) => {
   event.preventDefault()
-  event.target.reset()
-  axios.put('/foods/'+ event.target.id, this.state.review).then(response => {
+  const id = event.target.id
+  axios.put('/foods/'+id, this.state).then(response => {
     this.setState({
-      reviews: response.data
-    }), console.log(response.data)
+      reviews: response.data,
+      name: '',
+      review_content: '',
+      rating: null,
+      restaurant_id: ''
+    }), console.log(event.target.restaurant_id);
   })
 }
 //TOGGLE FORM
@@ -107,8 +120,10 @@ render = () => {
   return(
     <div>
     <div className="find-button">
-    <input placeholder='City ID' className='form-rj' type='text' onKeyUp={this.handleCityChange}/>
-    <button className='btn-sm btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
+    <form onSubmit={this.findFood}>
+    <input placeholder='City Name' className='form-rj' type='text' onKeyUp={this.handleCityChange}/>
+    <input type='submit' className='btn-sm btn-primary find-btn' value='Find Restaurants'/>
+    </form>
     </div>
     <div><h6 className='city'>City: {this.state.cityName}</h6></div>
     <div className="card-container">
@@ -137,22 +152,28 @@ render = () => {
                 this.state.reviews.filter((review) => {
                   return food.restaurant.id == review.restaurant_id
                 })
-                .map((review, i) => {
+                .map((review) => {
                   return(
-                    <div key={i} className='review-box'>
+                    <div className='review-box'>
                       <p>Name: {review.name}</p>
                       <p>Rating: {review.rating}</p>
                       <p>{review.review_content}</p>
-                      <button className='btn-sm btn-outline-danger' onClick={this.deleteReview} id={review._id}>Remove</button>
+                      <i className='fas fa-times-circle' onClick={this.deleteReview} id={review._id}></i>
                         <summary>
-                          <i onClick={this.toggleReview} className="fas fa-pencil-alt"></i>
+                          <i onClick={this.toggleReview} id={review._id} className="fas fa-pencil-alt"></i>
                         </summary>
                         {this.state.showReview ? <form onSubmit={this.updateReview} id={review._id}>
-                          <input type='text' id='name' className='rating' onChange={this.handleChange}/>
+                        <input
+                           className='rating'
+                           type="text"
+                           id="name"
+                           onChange={this.handleReviewChange}
+                           placeholder={review.name}/>
                           <br/>
-                          <textarea className='rating' id='review_content' onChange={this.hangleChange}/>
+                          <input type='number' className='rating' id='rating' min='0' max='5'onChange={this.handleReviewChange} placeholder={review.rating}/>
                           <br/>
-                          <input type='number' className='rating' id='rating' min='0' max='5'onChange={this.handleChange}/>
+                          <textarea
+                          className='rating' id='review_content' onChange={this.handleReviewChange} placeholder={review.review_content}/>
                           <input className="btn-sm btn-outline-success" type="submit" value="Update" />
                           </form> : null}
                      </div>
@@ -163,7 +184,7 @@ render = () => {
           </div>
       )})}
       </div>
-      <div className='footer-bottom'><footer className='footer'><h6 className='created'>Created by RJ, Sammy, Brandon, Ricky</h6></footer></div>
+      <footer className='footer'><h6 className='created'>Created by RJ, Sammy, Brandon, Ricky</h6></footer>
     </div>
   )
   }
