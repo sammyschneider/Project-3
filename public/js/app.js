@@ -178,12 +178,12 @@ render = () => {
     <button className='btn-sm btn-primary find-btn' onClick={this.findFood}>Find Restaurants</button>
     </div>
     <div className="find-button">
-        <button onClick={this.newYork}>Find New York Restaurants</button>
-        <button onClick={this.lasVegas}>Find Las Vegas Restaurants</button>
-        <button onClick={this.washingtonDc}>Find Washington DC Restaurants</button>
-        <button onClick={this.findAustin}>Find Austin Restaurants</button>
-        <button onClick={this.findChicago}>Find Chicago Restaurants</button>
-        <button onClick={this.findAtlanta}>Find Atlanta Restaurants</button>
+        <button onClick={this.newYork}>New York Restaurants</button>
+        <button onClick={this.lasVegas}>Las Vegas Restaurants</button>
+        <button onClick={this.washingtonDc}>Washington DC Restaurants</button>
+        <button onClick={this.findAustin}>Austin Restaurants</button>
+        <button onClick={this.findChicago}>Chicago Restaurants</button>
+        <button onClick={this.findAtlanta}>Atlanta Restaurants</button>
         </div>
 
     <div><h6 className='city'>City: {this.state.foods.city}</h6></div>
