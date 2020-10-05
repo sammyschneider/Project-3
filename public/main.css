@@ -35,12 +35,13 @@ button {
 }
 .findRestaurant{
   margin-left: 1em;
-  margin-top: -4.5em;
+  margin-top: -5em;
   margin-bottom: 0.2em;
 }
 .favRest {
   width: 200px;
   border: 1px solid black;
+ background-color: rgba(200,100,0,0.3)
 }
 /* just started the css process its long way from even a quarter done. */
 .apiImg {
@@ -62,7 +63,7 @@ button {
   box-sizing: border-box;
   padding: 1%;
   box-shadow: 2px 2px 4px;
-  /* background-color: #a8edea; */
+  background-color: rgba(200,100,0,0.3)
 }
 .food-info {
   /* display: flex; */
@@ -74,15 +75,4 @@ ul {
   display: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-}
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-basis: 28%;
-  margin: 2%;
-  background: #12121212;
-  box-sizing: border-box;
-  padding: 2%;
-  box-shadow: 2px 2px 4px gold;
 }
