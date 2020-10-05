@@ -6,10 +6,11 @@
     background-attachment: fixed;
     background-color: rgba(0, 0, 0, 0.9);
     color: black;
+    font-family: 'Rock Salt', cursive;
   }
 .container {
-  display: flex;
-  justify-content: space-around;
+ display:flex;
+ justify-content: space-between;
   margin-top: 90px;
 }
 .header-tag{
@@ -23,25 +24,27 @@ color: black;
   font-size: 2vw;
 }
 button {
-  padding: 5px;
+  padding: 10px;
   margin-left: 5px;
+  background-color: #50cc7f;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
 }
-.idForm{
-  display:flex;
-  justify-content: flex-end;
+button:hover{
+  color:blue;
 }
+
 .info {
   font-family: 'Rokkitt', serif;
 }
-.findRestaurant{
-  margin-left: 1em;
-  margin-top: -50px;
-  margin-bottom: 0.2em;
-}
+
 .favRest {
   width: 200px;
+  margin: 2%;
   border: 1px solid black;
-background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+  background-color: rgba(0,0,0,0.1);
+/* background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%); */
 }
 /* just started the css process its long way from even a quarter done. */
 .apiImg {
@@ -51,7 +54,6 @@ background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
 }
 .food-card {
   display: flex;
@@ -62,8 +64,9 @@ background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
   margin: 2%;
   box-sizing: border-box;
   padding: 1%;
-  box-shadow: 2px 2px 4px;
-background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+  box-shadow: 2px 2px 4px white;
+  background-color: rgba(0,0,0,0.1);
+/* background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%); */
 }
 .food-info {
   /* display: flex; */
@@ -75,4 +78,60 @@ ul {
   display: column;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.favRestaurants {
+margin-right: 5%;
+  margin-left: 40px;
+}
+.findRestaurant{
+  margin-right: 7%;
+  margin-top: -90px;
+}
+.idForm{
+  margin-left: 0.5%;
+}
+.idInput{
+  padding: 8px 80px;
+  /* margin-left: 12%; */
+}
+.submitId{
+  color: white;
+  padding: 8px;
+  background-color: #50cc7f;
+}
+.submitId:hover{
+  color:blue;
+}
+.name{
+  color: white;
+  text-decoration: none;
+}
+.name:hover{
+  text-decoration: underline;
+  color: blue;
+}
+
+@media(max-width:600px){
+  .container{
+    display: grid;
+  }
+  .findRestaurant{
+    display:block;
+  }
+  .food-card{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-basis: 80%;
+    /* width:400px; */
+  }
+  .findRestaurant{
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+  .favRestaurants {
+  margin-right: 0;
+    margin-left: 0;
+  }
 }

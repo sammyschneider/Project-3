@@ -15,17 +15,28 @@ class App extends React.Component {
       rating: null,
       restaurant_id: ''
     },
+    show: false,
+    showFav: false,
   }
   //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
+
+  componentDidMount = () => {
+  axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=279&entity_type=city').then(response => {
+    this.setState({
+      foods: response.data,
+      restaurant: response.data.best_rated_restaurant,
+      cityName: response.data.city
+    })
+  })
+}
   componentDidMount = () => {
     axios.get('/foods').then(response => {
       this.setState({
-        favorite: response.data,
-        reviews: response.data
+        reviews: response.data,
+        favorite: response.data
       })
     })
   }
-
   // delete
 
 deleteRestaurant = (event) => {
@@ -192,11 +203,24 @@ findAtlanta= (event) => {
       })
     })
   }
+  //TOGGLE FORM
+  toggleForm = (event) => {
+      this.setState({
+        show: !this.state.show
+      })
+  }
+  //TOGGLE REVIEW
+    toggleFav = (event) => {
+        this.setState({
+          showFav: !this.state.showFav
+        })
+    }
 render = () => {
   return(
     <div className="container">
+
     <div className="favRestaurants">
-    <h2>Favorite Restaurants</h2>
+
     <details>
     <summary>Add your favorite restaurant </summary>
    <div className="addForm">
@@ -221,12 +245,15 @@ render = () => {
       </form>
       </div>
    </details>
+
     <ul>
+    <h2>My favorites</h2>
      {this.state.favorite.map((fav) => {
        return(
          <div className="favRest">
          <img className="favImg"src={fav.img}/>
-         <h4>Name: {fav.restaurantName}</h4>
+         <details>
+         <summary>{fav.restaurantName}</summary>
          <h4>Cuisines: {fav.cuisines}</h4>
          <h4>Address: {fav.address}</h4>
          <h4>Ratings: {fav.ratings}</h4>
@@ -258,36 +285,40 @@ render = () => {
           </button>
           </details>
           </div>
+          </details>
          </div>
        )
      })}
      </ul>
 </div>
       <div className="findRestaurant">
-     <form className="idForm"onSubmit={this.findById}>
-     <input type="text" onKeyUp={this.changeId} placeholder="use city id"/>
-     <input type="submit" value="Find restaurant"/>
-
-      </form>
         <div className="find-button">
+        <details className="dropDown">
+        <summary>Quick Search</summary>
         <button onClick={this.newYork}>Find Restaurants at New York</button>
         <button onClick={this.lasVegas}>Find Restaurants at Las Vegas</button>
-        <button onClick={this.washingtonDc}>Find Restaurants at Washington DC</button>
+        <button onClick={this.washingtonDc}>Find Restaurants at W.DC</button>
         <button onClick={this.findAustin}>Find Restaurants at Austin</button>
         <button onClick={this.findChicago}>Find Restaurants at Chicago</button>
         <button onClick={this.findAtlanta}>Find Restaurants at Atlanta</button>
-        </div>
+        </details>
 
+        <form className="idForm"onSubmit={this.findById}>
+         <input className="idInput"type="text" onKeyUp={this.changeId} placeholder="use city id"/>
+        <input className="submitId"type="submit" value="Find restaurant"/>
+         </form>
+         </div>
         <div>
-        <h3 className="city">City: {this.state.foods.city}</h3>
+        <h2>{this.state.foods.city}</h2>
         </div>
         <div className="card-container">
+
         {this.state.restaurant.map (food => {
           return(
-        <div className="food-card">
+            <div className="food-card">
             <img className="apiImg"src={food.restaurant.thumb} alt="food-pic"/>
             <div className="food-info">
-            <h3>Name: <a href={food.restaurant.url}>{food.restaurant.name}</a></h3>
+            <h3 >Name: <a className="name"href={food.restaurant.url}>{food.restaurant.name}</a></h3>
             <h3>Cuisines: {food.restaurant.cuisines}</h3>
             <h3>location: {food.restaurant.location.address}</h3>
             <h3>Ratings: {food.restaurant.user_rating.aggregate_rating}</h3>
@@ -301,7 +332,7 @@ render = () => {
                     <div key={i}>
                       <p>Name:{review.name}</p>
                       <p>Rating:{review.rating}</p>
-                      <p>{review.review_content}</p>
+                      <p>Review: {review.review_content}</p>
                       <button onClick={this.deleteReview} id={review._id}>delete</button>
                       <details>
                       <summary>Edit review</summary>
