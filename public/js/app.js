@@ -16,8 +16,8 @@ class App extends React.Component {
       restaurant_id: ''
     }
   }
-  //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
 
+  //DON'T LOAD UNTIL EVERYTHING IS MOUNTED ON THE DOM
   componentDidMount = () => {
   axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id=279&entity_type=city').then(response => {
     this.setState({
@@ -27,14 +27,25 @@ class App extends React.Component {
     })
   })
 }
-  componentDidMount = () => {
-    axios.get('/foods').then(response => {
-      this.setState({
-        reviews: response.data,
-        favorite: response.data
-      })
+// loads favorite restaurants and reviews
+componentDidMount = () => {
+  axios.get('/foods').then(response => {
+    this.setState({
+      reviews: response.data,
+      favorite: response.data
     })
-  }
+  })
+}
+
+// LOADS CRUD (Favorite restaurant SCHEMA)
+createFav = (event) => {
+  event.preventDefault()
+  axios.post('/foods', this.state).then(response => {
+    this.setState({
+      favorite: response.data
+    })
+  })
+}
   // delete
 
 deleteRestaurant = (event) => {
@@ -43,7 +54,7 @@ deleteRestaurant = (event) => {
     {favorite: response.data})
   )
 }
-
+// edit favorite restaurant
 updateRestaurant = (event) => {
       event.preventDefault()
       const id = event.target.id
@@ -78,6 +89,7 @@ deleteReview = (event) => {
     })
   })
 }
+  // update review
 updateReview = (event) => {
   event.preventDefault()
   const id = event.target.id
@@ -120,7 +132,7 @@ reviewChange = (event) => {
   })
 }
   //LOADS ZOMATO API DIRECTLY ON PAGE
-  findById = (event) => {
+  findByName = (event) => {
      event.preventDefault()
      axios.get('https://developers.zomato.com/api/v2.1/location_details?apikey=a5408e7fd89832c5bc693f21db7f0abf&entity_id='+ this.state.city+'&entity_type=city').then(
          (response) => {
@@ -197,15 +209,7 @@ findAtlanta= (event) => {
           }
         )}
 
-  // LOADS CRUD (Favorite restaurant SCHEMA)
-  createFav = (event) => {
-    event.preventDefault()
-    axios.post('/foods', this.state).then(response => {
-      this.setState({
-        favorite: response.data
-      })
-    })
-  }
+
   //TOGGLE FORM
   toggleForm = (event) => {
       this.setState({
@@ -221,11 +225,9 @@ findAtlanta= (event) => {
 render = () => {
   return(
     <div className="container">
-
     <div className="favRestaurants">
-
-    <details>
-    <summary>Add your favorite restaurant </summary>
+  <details>
+    <summary>Add Restaurant </summary>
    <div className="addForm">
    <form onSubmit={this.createFav}>
         <label htmlFor="img">Image: </label><br/>
@@ -311,8 +313,8 @@ render = () => {
         <button onClick={this.findAtlanta}>Atlanta</button>
         </details>
 
-        <form className="idForm"onSubmit={this.findById}>
-         <input className="idInput"type="text" onKeyUp={this.handleCityChange} placeholder="city name"/>
+        <form className="idForm"onSubmit={this.findByName}>
+         <input className="idInput"type="text" onKeyUp={this.handleCityChange} placeholder="search by city name"/>
         <input className="submitId"type="submit" value="Find restaurant"/>
          </form>
          </div>
@@ -338,8 +340,8 @@ render = () => {
                 .map((review, i) => {
                   return(
                     <div key={i}>
-                      <p>Name:{review.name}</p>
-                      <p>Rating:{review.rating}</p>
+                      <p>Name: {review.name}</p>
+                      <p>Rating: {review.rating}</p>
                       <p>Review: {review.review_content}</p>
                       <button onClick={this.deleteReview} id={review._id}>delete</button>
                       <details>
