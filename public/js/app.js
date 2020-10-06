@@ -246,7 +246,7 @@ render = () => {
         <input onChange={this.handleChange} type="number" min="0" max="5"step="0.1"id="ratings" />
         <br />
 
-        <input type="submit" value="Add Favorite Restaurant" />
+        <input className="submit" type="submit" value="Add Favorite Restaurant" />
       </form>
       </div>
    </details>
@@ -286,7 +286,7 @@ render = () => {
           <input onChange={this.handleChange} type="number" min="0" max="5" step="0.1" id="ratings" />
           <br />
 
-          <input type="submit" value="Edit Your Restaurant" />
+          <input className="submit"type="submit" value="Edit Your Restaurant" />
           </form>
           <button value ={fav._id}
           onClick={this.deleteRestaurant}
@@ -315,11 +315,11 @@ render = () => {
 
         <form className="idForm"onSubmit={this.findByName}>
          <input className="idInput"type="text" onKeyUp={this.handleCityChange} placeholder="search by city name"/>
-        <input className="submitId"type="submit" value="Find restaurant"/>
+        <input className="submit"type="submit" value="Find restaurant"/>
          </form>
          </div>
         <div>
-        <h2>{this.state.foods.city}</h2>
+        <h2 className="city">{this.state.foods.city}</h2>
         </div>
         <div className="card-container">
 
@@ -343,7 +343,6 @@ render = () => {
                       <p>Name: {review.name}</p>
                       <p>Rating: {review.rating}</p>
                       <p>Review: {review.review_content}</p>
-                      <button onClick={this.deleteReview} id={review._id}>delete</button>
                       <details>
                       <summary>Edit review</summary>
                       <form id={review._id} onSubmit={this.updateReview}>
@@ -375,8 +374,9 @@ render = () => {
                         placeholder={review.rating}
                       />
                       <br />
-                      <input type="submit" value="Edit Review" />
+                      <input className="submit" type="submit" value="Edit Review" />
                     </form>
+                    <button onClick={this.deleteReview} id={review._id}>delete</button>
                       </details>
                     </div>
                   )
@@ -394,7 +394,7 @@ render = () => {
                 <br/>
                 <label htmlFor="rating">Rating: </label>
                 <input id='rating' type='number' min='0' max='5' step="0.1" onChange={this.reviewChange} />
-                <input type="submit" value="Add A Review" className="update-btn" />
+                <input className="submit" type="submit" value="Add A Review" />
               </form>
               </details>
             </div>
