@@ -11,7 +11,7 @@
 .container {
  display:flex;
  justify-content: space-between;
-  margin-top: 95px;
+  /* margin-top: 95px; */
 }
 .header-tag{
 font-size: 25px;
@@ -82,17 +82,18 @@ ul {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.favRestaurants {
+.favRestaurants{
 margin-right: 5%;
-  margin-left: 40px;
+margin-left: 40px;
 }
 .findRestaurant{
   margin-right: 7%;
-  margin-top: -90px;
+  /* margin-top: -90px; */
 }
-/* .find-button{
-  margin-right:800px;
-} */
+.myFav{
+  color: white;
+}
+
 .idInput{
   padding: 8px 80px;
   /* margin-left: 12%; */
@@ -142,6 +143,6 @@ h6{
   }
   .favRestaurants {
   margin-right: 0px;
-    margin-left: -15px;
+    margin-left: -5px;
   }
 }
