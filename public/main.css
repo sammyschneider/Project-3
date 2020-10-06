@@ -111,6 +111,9 @@ margin-right: 5%;
   text-decoration: underline;
   color: blue;
 }
+h6{
+  text-align: center;
+}
 
 @media(max-width:600px){
   .container{
